@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-lavender: #F6F4FF;
+  --color-brand-lavender-dark: #E0D9FF;
+  --color-brand-blue: #F4F7FA;
+  --color-brand-blue-dark: #D8E1ED;
+  --color-brand-text: #1A202C;
+  --color-brand-text-muted: #4A5568;
+  --color-brand-accent: #8B5CF6;
+  --color-brand-accent-light: #A78BFA;
+
+  --color-bg-off-white: #FAFAFA;
+  --color-bg-warm-gray: #F9F8F6;
+  --color-bg-blue-gray: #F0F4F8;
+  --color-bg-lavender-soft: #F8F7FF;
+  
+  --font-sans: "Outfit", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Outfit", sans-serif;
+}
+
+@layer base {
+  body {
+    @apply bg-[#FDFDFF] text-brand-text antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  
+  h1, h2, h3, h4 {
+    @apply font-display tracking-tight;
+  }
+}
+
+@layer utilities {
+  .glass {
+    @apply bg-white/60 backdrop-blur-xl border border-white/40;
+  }
+  
+  .shadow-premium {
+    box-shadow: 0 20px 50px -12px rgba(143, 175, 154, 0.2);
+  }
+  
+  .shadow-card {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.03), 0 8px 10px -6px rgba(0, 0, 0, 0.03);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .bg-mesh {
+    background-image: 
+      radial-gradient(at 0% 0%, rgba(243, 240, 255, 0.5) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(240, 244, 248, 0.5) 0px, transparent 50%);
+  }
+
+  .decorative-icon {
+    @apply absolute pointer-events-none select-none opacity-[0.04] text-brand-accent;
+  }
+
+  .btn-pulse {
+    animation: btn-pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes btn-pulse {
+    0%, 100% {
+      transform: scale(1);
+      box-shadow: 0 20px 50px -12px rgba(139, 92, 246, 0.4);
+    }
+    50% {
+      transform: scale(1.03);
+      box-shadow: 0 20px 50px -12px rgba(139, 92, 246, 0.6);
+    }
+  }
+}
