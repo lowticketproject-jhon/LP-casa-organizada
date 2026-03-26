@@ -108,7 +108,7 @@ export default function App() {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-brand-accent/30 selection:text-brand-text">
       {/* 1. HERO SECTION */}
-      <header className="relative pt-10 pb-16 px-6 overflow-hidden">
+      <header className="relative pt-8 pb-10 px-6 overflow-hidden">
         <DecorativeBackground />
         
         <div className="max-w-7xl mx-auto text-center relative z-10">
@@ -198,7 +198,7 @@ export default function App() {
       </header>
 
       {/* 2. BLOCO DE DESTAQUE INCLUSIVO */}
-      <section className="py-12 px-6 bg-brand-lavender/30 border-y border-brand-lavender/60 relative z-20">
+      <section className="py-8 px-6 bg-brand-lavender/30 border-y border-brand-lavender/60 relative z-20">
         <div className="max-w-3xl mx-auto text-center">
           <h2 className="text-2xl md:text-3xl font-bold text-brand-text mb-4">Cada gravidez é única — mesmo para quem já é mãe.</h2>
           <p className="text-brand-text-muted text-lg leading-relaxed font-medium">Mesmo que essa não seja sua primeira gestação, cada gravidez tem seu ritmo, suas mudanças e seus próprios momentos importantes. O Gravidez Organizada ajuda você a acompanhar tudo sem deixar nada importante passar.</p>
@@ -227,12 +227,12 @@ export default function App() {
       </section>
 
       {/* 4. BLOCO DE PROBLEMA */}
-      <section className="py-20 px-6 bg-brand-accent relative overflow-hidden">
+      <section className="py-12 px-6 bg-brand-accent relative overflow-hidden">
         <div className="absolute inset-0 opacity-10">
           <DecorativeBackground />
         </div>
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-16">
+          <div className="text-center mb-10">
             <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 text-balance">Você não precisa acompanhar sua gravidez no escuro.</h2>
             <p className="text-brand-lavender-dark max-w-2xl mx-auto text-lg font-medium">Quando as informações ficam soltas, os exames se acumulam e tudo parece importante ao mesmo tempo, acompanhar a gravidez pode ficar mais confuso do que deveria.</p>
           </div>
@@ -256,17 +256,17 @@ export default function App() {
       </section>
 
       {/* 5. BLOCO DE SOLUÇÃO */}
-      <section className="py-20 px-6 bg-brand-accent relative overflow-hidden border-t border-white/10">
+      <section className="py-12 px-6 bg-brand-accent relative overflow-hidden border-t border-white/10">
         <div className="absolute inset-0 opacity-10">
           <DecorativeBackground />
         </div>
         <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
           <div className="order-2 lg:order-1">
-            <h2 className="text-3xl md:text-5xl font-bold text-white mb-8 text-balance">O Gravidez Organizada reúne em um só lugar o que realmente importa na sua gravidez.</h2>
-            <p className="text-lg text-brand-lavender-dark mb-10 leading-relaxed font-medium">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-5 text-balance">O Gravidez Organizada reúne em um só lugar o que realmente importa na sua gravidez.</h2>
+            <p className="text-lg text-brand-lavender-dark mb-6 leading-relaxed font-medium">
               Você acompanha sua gravidez com mais praticidade, entende melhor o desenvolvimento do bebê e visualiza o que vem a seguir em cada etapa.
             </p>
-            <div className="grid sm:grid-cols-2 gap-6 mb-12">
+            <div className="grid sm:grid-cols-2 gap-4 mb-8">
               {[
                 "Semana atual",
                 "Desenvolvimento do bebê",
@@ -299,10 +299,10 @@ export default function App() {
       </section>
 
       {/* 5. SEÇÃO “O QUE VOCÊ ACOMPANHA NO APP” */}
-      <section className="py-16 px-6 bg-white relative">
+      <section className="py-10 px-6 bg-white relative">
         <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-5xl font-bold text-brand-text mb-4">O que você acompanha no app</h2>
             <p className="text-brand-text-muted max-w-2xl mx-auto text-lg font-medium">Tudo o que importa para a sua gravidez, reunido em um só lugar.</p>
           </div>
@@ -333,10 +333,10 @@ export default function App() {
 
 
       {/* 7. SEÇÃO DE BENEFÍCIOS */}
-      <section className="py-16 px-6 bg-bg-warm-gray relative">
+      <section className="py-10 px-6 bg-bg-warm-gray relative">
         <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-5xl font-bold text-brand-text mb-4">O que muda quando você acompanha sua gravidez com mais clareza</h2>
             <p className="text-brand-text-muted max-w-2xl mx-auto text-lg font-medium">Mais do que organização, você ganha tranquilidade em cada etapa da gestação.</p>
           </div>
@@ -363,7 +363,7 @@ export default function App() {
       </section>
 
       {/* 8. BLOCO DE VALOR */}
-      <section className="py-14 px-6 bg-bg-warm-gray relative">
+      <section className="py-8 px-6 bg-bg-warm-gray relative">
         <DecorativeBackground />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="text-2xl md:text-4xl font-bold text-brand-text mb-5 text-balance">Tudo o que você precisa em um só lugar para acompanhar sua gravidez com mais tranquilidade</h2>
@@ -372,10 +372,10 @@ export default function App() {
       </section>
 
       {/* 10. SEÇÃO DE BÔNUS */}
-      <section className="py-16 px-6 bg-white relative">
+      <section className="py-10 px-6 bg-white relative">
         <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-5xl font-bold text-brand-text mb-4">Bônus exclusivos para deixar sua jornada ainda mais prática</h2>
             <p className="text-brand-text-muted text-lg font-medium">Materiais complementares inclusos para você de presente.</p>
           </div>
@@ -400,10 +400,10 @@ export default function App() {
       </section>
 
       {/* 12. OFERTA FINAL */}
-      <section id="preco" className="py-16 px-6 bg-brand-accent relative overflow-hidden">
+      <section id="preco" className="py-10 px-6 bg-brand-accent relative overflow-hidden">
         <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-10">
+          <div className="text-center mb-6">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Comece hoje a acompanhar sua gravidez com mais clareza</h2>
             <p className="text-brand-lavender-dark font-medium text-lg">Pagamento único. Sem mensalidade. Acesso imediato no celular.</p>
           </div>
@@ -466,7 +466,7 @@ export default function App() {
       </section>
 
       {/* 13. BLOCO DE GARANTIA */}
-      <section className="py-12 px-6 bg-bg-warm-gray relative">
+      <section className="py-8 px-6 bg-bg-warm-gray relative">
         <DecorativeBackground />
         <div className="max-w-4xl mx-auto relative z-10">
           <div className="bg-white rounded-[2.5rem] shadow-card p-8 md:p-10 border border-brand-lavender/40 flex flex-col md:flex-row items-center gap-8 md:gap-10">
@@ -484,10 +484,10 @@ export default function App() {
       </section>
 
       {/* 14. FAQ */}
-      <section className="py-16 px-6 bg-bg-off-white relative overflow-hidden">
+      <section className="py-10 px-6 bg-bg-off-white relative overflow-hidden">
         <DecorativeBackground />
         <div className="max-w-4xl mx-auto relative z-10">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-3xl md:text-5xl font-bold text-brand-text mb-4">Perguntas frequentes</h2>
             <p className="text-brand-text-muted text-lg font-medium">Tudo o que você precisa saber sobre o Gravidez Organizada.</p>
           </div>
@@ -530,14 +530,14 @@ export default function App() {
       </section>
 
       {/* 15. FECHAMENTO FINAL */}
-      <section className="py-20 px-6 bg-bg-lavender-soft text-center relative overflow-hidden border-t border-brand-lavender/40">
+      <section className="py-12 px-6 bg-bg-lavender-soft text-center relative overflow-hidden border-t border-brand-lavender/40">
         <DecorativeBackground />
         <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-4xl md:text-6xl font-black text-brand-text mb-6 leading-[1.1] font-display text-balance tracking-tight">Tenha sua gravidez <span className="text-brand-accent">mais acompanhada e mais clara</span> em um só lugar.</h2>
           <p className="text-lg md:text-xl text-brand-text-muted mb-10 max-w-3xl mx-auto font-medium">Se você quer entender melhor cada etapa, acompanhar o desenvolvimento do bebê e saber o que vem a seguir, o Gravidez Organizada foi feito para isso.</p>
           <Button primary className="text-xl py-6 px-14 shadow-brand-accent/40" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
           
-          <div className="mt-16 flex justify-center items-center gap-10 opacity-50 grayscale font-bold text-[12px] uppercase tracking-widest">
+          <div className="mt-10 flex justify-center items-center gap-10 opacity-50 grayscale font-bold text-[12px] uppercase tracking-widest">
              <div className="flex items-center gap-2">
                <ShieldCheck className="w-5 h-5" />
                <span>Compra Segura</span>
@@ -551,7 +551,7 @@ export default function App() {
       </section>
 
       {/* Footer */}
-      <footer className="py-12 px-6 bg-white border-t border-brand-lavender/40 text-center relative">
+      <footer className="py-8 px-6 bg-white border-t border-brand-lavender/40 text-center relative">
         <div className="max-w-7xl mx-auto">
           <div className="flex justify-center mb-8">
             <div className="flex items-center gap-3 opacity-80">
