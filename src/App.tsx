@@ -316,22 +316,13 @@ export default function App() {
               { icon: Clock, title: "Linha do tempo da gestação", desc: "Visualize sua jornada do positivo ao parto com mais clareza.", img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/Tamanho_do_Bebe_rlfq6k.jpg" },
               { icon: Zap, title: "Próximos passos importantes", desc: "Saiba exatamente o que vem a seguir em cada fase da gestação.", img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/passos_pvkhng.jpg" },
             ].map((item, i) => (
-              <div key={i} className="group">
-                <div className="mb-4 overflow-hidden rounded-[2rem] bg-brand-blue aspect-video flex items-center justify-center relative shadow-premium group-hover:shadow-premium transition-all duration-500">
-                  <img 
-                    src={item.img}
-                    alt={item.title} 
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
+              <div key={i} className="group flex gap-4 p-6 rounded-[2rem] border border-brand-lavender/60 bg-white hover:border-brand-accent/30 hover:shadow-card transition-all duration-300">
+                <div className="w-12 h-12 shrink-0 rounded-xl bg-brand-lavender flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
+                  <item.icon className="w-6 h-6" />
                 </div>
-                <div className="flex gap-4 px-2">
-                  <div className="w-10 h-10 shrink-0 rounded-xl bg-brand-lavender flex items-center justify-center text-brand-accent group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
-                    <item.icon className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-brand-text mb-1 tracking-tight">{item.title}</h3>
-                    <p className="text-[14px] text-brand-text-muted leading-relaxed font-medium">{item.desc}</p>
-                  </div>
+                <div>
+                  <h3 className="text-lg font-bold text-brand-text mb-1 tracking-tight">{item.title}</h3>
+                  <p className="text-[14px] text-brand-text-muted leading-relaxed font-medium">{item.desc}</p>
                 </div>
               </div>
             ))}
