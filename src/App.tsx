@@ -37,7 +37,7 @@ interface ButtonProps {
 }
 
 const Button = ({ children, className = "", primary = false, onClick }: ButtonProps) => (
-  <button onClick={onClick} className={`px-8 py-4 rounded-full font-bold transition-all duration-500 transform hover:scale-[1.02] active:scale-95 shadow-premium ${
+  <button onClick={onClick} className={`px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-premium ${
     primary 
       ? "bg-brand-accent text-white hover:bg-brand-accent-light shadow-brand-accent/25 btn-pulse" 
       : "glass text-brand-text border border-brand-lavender-dark hover:bg-brand-lavender/80 shadow-card"
@@ -53,7 +53,7 @@ interface CardProps {
 }
 
 const Card = ({ children, className = "" }: CardProps) => (
-  <div className={`glass p-8 rounded-[2.5rem] shadow-premium border border-brand-lavender/60 transition-all duration-500 hover:shadow-premium hover:border-brand-accent/30 ${className}`}>
+  <div className={`glass p-8 rounded-[2.5rem] shadow-premium border border-brand-lavender/60 transition-all duration-300 hover:shadow-premium hover:border-brand-accent/30 ${className}`}>
     {children}
   </div>
 );
@@ -67,7 +67,7 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
         className="w-full py-6 flex justify-between items-center text-left focus:outline-none group"
       >
         <span className={`text-lg font-bold transition-colors duration-300 ${isOpen ? 'text-brand-accent' : 'text-brand-text group-hover:text-brand-accent-light'}`}>{question}</span>
-        <div className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-500 ${isOpen ? 'bg-brand-accent text-white rotate-180 shadow-premium' : 'bg-brand-lavender/50 text-brand-accent'}`}>
+        <div className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-brand-accent text-white rotate-180 shadow-premium' : 'bg-brand-lavender/50 text-brand-accent'}`}>
           <ChevronDown className="w-5 h-5" />
         </div>
       </button>
@@ -97,8 +97,8 @@ const DecorativeBackground = () => (
     <Moon className="decorative-icon top-[60%] right-[12%] w-14 h-14 -rotate-6 opacity-[0.03]" />
     <Leaf className="decorative-icon top-[80%] left-[15%] w-14 h-14 rotate-45 opacity-[0.04]" />
     <Calendar className="decorative-icon top-[25%] right-[20%] w-12 h-12 opacity-[0.02]" />
-    <div className="absolute top-[20%] right-[30%] w-64 h-64 bg-brand-accent/5 rounded-full blur-[120px]" />
-    <div className="absolute bottom-[20%] left-[20%] w-80 h-80 bg-brand-accent/5 rounded-full blur-[150px]" />
+    <div className="absolute top-[20%] right-[30%] w-64 h-64 bg-brand-accent/5 rounded-full blur-[80px]" />
+    <div className="absolute bottom-[20%] left-[20%] w-80 h-80 bg-brand-accent/5 rounded-full blur-[100px]" />
   </div>
 );
 
@@ -128,8 +128,9 @@ export default function App() {
 
           {/* Headline */}
           <motion.h1 
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl md:text-5xl lg:text-6xl font-black text-brand-text leading-[1.1] mb-6 max-w-5xl mx-auto text-balance tracking-tight"
           >
             Veja em que fase sua gravidez está, como o bebê está se desenvolvendo e quais são os <span className="text-brand-accent">próximos passos importantes</span>.
@@ -137,14 +138,14 @@ export default function App() {
 
           {/* Mockup Principal */}
           <motion.div 
-            initial={{ opacity: 0, y: 40 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
             className="relative max-w-4xl mx-auto mb-10"
           >
-            <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border border-brand-lavender/30">
+            <div className="relative z-10 rounded-[2rem] overflow-hidden border border-brand-lavender/40">
               <img 
-                src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774490179/1774438917689_fmz9lg.png" 
+                src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774495739/1774438917689-removebg-preview_lenqun.png" 
                 alt="Próximos passos importantes" 
                 className="w-full h-auto"
               />
@@ -158,7 +159,7 @@ export default function App() {
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-brand-text-muted mb-8 max-w-3xl mx-auto leading-relaxed font-medium"
           >
             Acompanhe sua gravidez semana a semana, organize exames e consultas e tenha tudo o que importa em um só lugar, do positivo ao parto.
@@ -168,7 +169,7 @@ export default function App() {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center"
           >
             <Button primary className="text-lg px-12 py-5" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
@@ -299,6 +300,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
             className="max-w-5xl mx-auto rounded-[2.5rem] overflow-hidden shadow-premium border border-brand-lavender/60"
           >
@@ -391,6 +393,7 @@ export default function App() {
           <motion.div 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             viewport={{ once: true }}
             className="max-w-4xl mx-auto glass bg-white/10 backdrop-blur-lg rounded-[3rem] shadow-premium border border-white/20 overflow-hidden grid md:grid-cols-2"
           >
