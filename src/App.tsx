@@ -309,20 +309,19 @@ export default function App() {
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
-              { icon: LayoutDashboard, title: "Acompanhamento semanal", desc: "Veja em que semana você está e o que esperar deste momento." },
-              { icon: Baby, title: "Desenvolvimento do bebê", desc: "Acompanhe como seu bebê está crescendo em cada etapa." },
-              { icon: Stethoscope, title: "Cronograma de exames", desc: "Saiba o que normalmente acontece em cada fase e organize seu pré-natal." },
-              { icon: ClipboardList, title: "Checklists práticos", desc: "Tenha listas prontas para os momentos mais importantes da gravidez." },
-              { icon: Clock, title: "Linha do tempo da gestação", desc: "Visualize sua jornada do positivo ao parto com mais clareza." },
-              { icon: Zap, title: "Próximos passos importantes", desc: "Saiba exatamente o que vem a seguir em cada fase da gestação." },
+              { icon: LayoutDashboard, title: "Acompanhamento semanal", desc: "Veja em que semana você está e o que esperar deste momento.", img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487757/Jornada_ju0x7e.jpg" },
+              { icon: Baby, title: "Desenvolvimento do bebê", desc: "Acompanhe como seu bebê está crescendo em cada etapa.", img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/Progresso_basmlw.jpg" },
+              { icon: Stethoscope, title: "Cronograma de exames", desc: "Saiba o que normalmente acontece em cada fase e organize seu pré-natal.", img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487756/exames_h4g4bb.jpg" },
+              { icon: ClipboardList, title: "Checklists práticos", desc: "Tenha listas prontas para os momentos mais importantes da gravidez.", img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/CheckList_p4egsi.jpg" },
+              { icon: Clock, title: "Linha do tempo da gestação", desc: "Visualize sua jornada do positivo ao parto com mais clareza.", img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/Tamanho_do_Bebe_rlfq6k.jpg" },
+              { icon: Zap, title: "Próximos passos importantes", desc: "Saiba exatamente o que vem a seguir em cada fase da gestação.", img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/passos_pvkhng.jpg" },
             ].map((item, i) => (
               <div key={i} className="group">
                 <div className="mb-4 overflow-hidden rounded-[2rem] bg-brand-blue aspect-video flex items-center justify-center relative shadow-premium group-hover:shadow-premium transition-all duration-500">
                   <img 
-                    src={`https://picsum.photos/seed/module-v4-${i}/600/400`} 
+                    src={item.img}
                     alt={item.title} 
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                    referrerPolicy="no-referrer"
                   />
                 </div>
                 <div className="flex gap-4 px-2">
