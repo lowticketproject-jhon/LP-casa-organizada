@@ -399,14 +399,6 @@ export default function App() {
         </div>
       </section>
 
-      {/* 11. ANCORAGEM DE PREÇO */}
-      <section className="py-12 px-6 bg-brand-accent relative overflow-hidden">
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h2 className="text-2xl md:text-4xl font-bold text-white mb-4 text-balance">Tudo isso por apenas <span className="font-black">R$ 19,90</span></h2>
-          <p className="text-brand-lavender-dark text-lg leading-relaxed font-medium">Menos do que você gastaria em uma compra pequena do dia a dia para acompanhar sua gravidez com muito mais clareza, organização e praticidade.</p>
-        </div>
-      </section>
-
       {/* 12. OFERTA FINAL */}
       <section id="preco" className="py-16 px-6 bg-brand-accent relative overflow-hidden">
         <DecorativeBackground />
