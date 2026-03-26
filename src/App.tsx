@@ -216,30 +216,68 @@ export default function App() {
         </div>
       </section>
 
-      {/* 4. BLOCO DE PROBLEMA */}
-      <section className="py-12 px-6 bg-brand-accent relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10">
-          <DecorativeBackground />
-        </div>
+      {/* 4. BLOCO DE VITRINE VISUAL */}
+      <section className="py-16 px-6 bg-white relative overflow-hidden border-b border-brand-lavender/40">
+        <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-10">
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-6 text-balance">Você não precisa acompanhar sua gravidez no escuro.</h2>
-            <p className="text-brand-lavender-dark max-w-2xl mx-auto text-lg font-medium">Quando as informações ficam soltas, os exames se acumulam e tudo parece importante ao mesmo tempo, acompanhar a gravidez pode ficar mais confuso do que deveria.</p>
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-5xl font-black text-brand-text mb-6 text-balance tracking-tight">Veja o que o Gravidez Organizada mostra para você em cada etapa</h2>
+            <p className="text-brand-text-muted max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">Tudo pensado para ajudar você a acompanhar sua gravidez com mais praticidade, entendimento e direção.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {[
-              { icon: LayoutDashboard, title: "Nada importante passar batido", desc: "Consultas, exames e etapas importantes podem se perder no meio da rotina." },
-              { icon: Baby, title: "Dificuldade para acompanhar o bebê", desc: "Nem sempre fica claro o que está acontecendo com você e com o bebê em cada semana." },
-              { icon: Stethoscope, title: "Informação demais, direção de menos", desc: "Você vê muita coisa, mas continua sem saber o que importa agora." }
+              {
+                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/Progresso_basmlw.jpg",
+                title: "Saiba em que fase você está",
+                desc: "Veja sua semana atual, o trimestre e quanto falta para o parto com mais clareza."
+              },
+              {
+                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/Tamanho_do_Bebe_rlfq6k.jpg",
+                title: "Entenda o que está acontecendo agora",
+                desc: "Veja o tamanho do bebê, acompanhe mudanças do desenvolvimento e saiba sintomas comuns de cada etapa."
+              },
+              {
+                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/passos_pvkhng.jpg",
+                title: "Saiba o que fazer agora",
+                desc: "Tenha orientação prática sobre os próximos passos mais importantes em cada momento da gravidez."
+              },
+              {
+                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/CheckList_p4egsi.jpg",
+                title: "Não deixe nada importante passar",
+                desc: "Acompanhe tarefas essenciais do trimestre e visualize o que já foi feito e o que ainda precisa de atenção."
+              },
+              {
+                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487756/exames_h4g4bb.jpg",
+                title: "Organize exames e pontos de atenção",
+                desc: "Veja exames importantes da fase e o que observar no dia a dia com mais clareza."
+              },
+              {
+                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487757/Jornada_ju0x7e.jpg",
+                title: "Visualize sua jornada da gravidez",
+                desc: "Acompanhe a evolução semana a semana e veja onde você está na linha do tempo da gestação."
+              }
             ].map((item, i) => (
-              <div key={i} className="bg-white/10 backdrop-blur-lg p-8 rounded-[2.5rem] border border-white/20 shadow-premium transition-all duration-500 hover:bg-white/15 hover:scale-[1.02]">
-                <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center text-white mb-6 shadow-premium">
-                  <item.icon className="w-6 h-6" />
+              <motion.div 
+                key={i} 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+                viewport={{ once: true }}
+                className="group flex flex-col bg-bg-warm-gray/30 p-4 rounded-[2.5rem] border border-brand-lavender/60 shadow-premium transition-all duration-300 hover:shadow-premium hover:scale-[1.02]"
+              >
+                <div className="rounded-2xl overflow-hidden shadow-premium border border-brand-lavender/30 mb-6 aspect-video sm:aspect-auto">
+                  <img 
+                    src={item.img} 
+                    alt={item.title} 
+                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-4">{item.title}</h3>
-                <p className="text-brand-lavender-dark leading-relaxed text-[15px] font-medium">{item.desc}</p>
-              </div>
+                <div className="px-4 pb-4">
+                  <h3 className="text-xl font-bold text-brand-text mb-3 tracking-tight">{item.title}</h3>
+                  <p className="text-brand-text-muted leading-relaxed text-[15px] font-medium">{item.desc}</p>
+                </div>
+              </motion.div>
             ))}
           </div>
         </div>
@@ -432,7 +470,7 @@ export default function App() {
                 <p className="text-brand-accent font-black text-xs mt-2 uppercase tracking-widest">Pagamento único</p>
               </div>
 
-              <Button primary className="w-full text-base py-5 mb-5 shadow-brand-accent/40 bg-green-600 hover:bg-green-500" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>SIM! QUERO ACESSAR O GRAVIDEZ ORGANIZADA</Button>
+              <Button primary className="w-full text-base py-5 mb-5 shadow-brand-accent/40 bg-green-600 hover:bg-green-500" onClick={() => window.open('https://pay.cakto.com.br/koqudon_817260', '_blank')}>SIM! QUERO ACESSAR O GRAVIDEZ ORGANIZADA</Button>
               
               <div className="flex flex-col gap-2 items-center text-[12px] text-brand-text-muted font-bold uppercase tracking-wider">
                 <div className="flex items-center gap-2">
