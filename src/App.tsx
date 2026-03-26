@@ -138,31 +138,20 @@ export default function App() {
           {/* Mockup Principal */}
           <motion.div 
             initial={{ opacity: 0, y: 40 }}
-            animate={{ 
-              opacity: 1, 
-              y: [0, -15, 0],
-            }}
-            transition={{ 
-              opacity: { duration: 0.8 },
-              y: { 
-                duration: 5, 
-                repeat: Infinity, 
-                ease: "easeInOut" 
-              }
-            }}
-            className="relative max-w-[280px] md:max-w-[320px] mx-auto mb-10"
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="relative max-w-4xl mx-auto mb-10"
           >
-            <div className="relative z-10 rounded-[3.5rem] border-[10px] border-brand-text overflow-hidden shadow-premium">
+            <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-2xl border border-brand-lavender/30">
               <img 
-                src="https://picsum.photos/seed/pregnancy-app-v4/800/1600" 
-                alt="App Dashboard" 
+                src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774490179/1774438917689_fmz9lg.png" 
+                alt="Próximos passos importantes" 
                 className="w-full h-auto"
-                referrerPolicy="no-referrer"
               />
             </div>
             {/* Decorative Glows */}
-            <div className="absolute -top-20 -right-20 w-64 h-64 bg-brand-accent/10 rounded-full blur-[100px] -z-10" />
-            <div className="absolute -bottom-20 -left-20 w-64 h-64 bg-brand-accent/10 rounded-full blur-[100px] -z-10" />
+            <div className="absolute -top-20 -right-20 w-80 h-80 bg-brand-accent/10 rounded-full blur-[120px] -z-10" />
+            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-brand-accent/10 rounded-full blur-[120px] -z-10" />
           </motion.div>
 
           {/* Subheadline */}
@@ -322,29 +311,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* 6. NOVA SEÇÃO PRÓXIMOS PASSOS IMPORTANTES */}
-      <section className="py-10 px-6 bg-white relative border-t border-brand-lavender/40">
-        <DecorativeBackground />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-8">
-            <h2 className="text-2xl md:text-4xl font-bold text-brand-text mb-4">Próximos passos importantes</h2>
-            <p className="text-brand-text-muted max-w-2xl mx-auto text-lg font-medium">Saiba exatamente o que vem a seguir em cada fase da gestação.</p>
-          </div>
 
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto rounded-[2.5rem] overflow-hidden shadow-premium"
-          >
-            <img 
-              src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774490179/1774438917689_fmz9lg.png" 
-              alt="Próximos passos importantes" 
-              className="w-full h-auto"
-            />
-          </motion.div>
-        </div>
-      </section>
 
       {/* 7. SEÇÃO DE BENEFÍCIOS */}
       <section className="py-10 px-6 bg-bg-warm-gray relative">
