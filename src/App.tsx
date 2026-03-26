@@ -22,7 +22,9 @@ import {
   Star,
   Moon,
   Leaf,
-  Calendar
+  Calendar,
+  Compass,
+  MapPin
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -228,32 +230,32 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {[
               {
-                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/Progresso_basmlw.jpg",
+                icon: Calendar,
                 title: "Saiba em que fase você está",
                 desc: "Veja sua semana atual, o trimestre e quanto falta para o parto com mais clareza."
               },
               {
-                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/Tamanho_do_Bebe_rlfq6k.jpg",
+                icon: Baby,
                 title: "Entenda o que está acontecendo agora",
                 desc: "Veja o tamanho do bebê, acompanhe mudanças do desenvolvimento e saiba sintomas comuns de cada etapa."
               },
               {
-                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/passos_pvkhng.jpg",
+                icon: Compass,
                 title: "Saiba o que fazer agora",
                 desc: "Tenha orientação prática sobre os próximos passos mais importantes em cada momento da gravidez."
               },
               {
-                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487755/CheckList_p4egsi.jpg",
+                icon: ClipboardList,
                 title: "Não deixe nada importante passar",
                 desc: "Acompanhe tarefas essenciais do trimestre e visualize o que já foi feito e o que ainda precisa de atenção."
               },
               {
-                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487756/exames_h4g4bb.jpg",
+                icon: Stethoscope,
                 title: "Organize exames e pontos de atenção",
                 desc: "Veja exames importantes da fase e o que observar no dia a dia com mais clareza."
               },
               {
-                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774487757/Jornada_ju0x7e.jpg",
+                icon: MapPin,
                 title: "Visualize sua jornada da gravidez",
                 desc: "Acompanhe a evolução semana a semana e veja onde você está na linha do tempo da gestação."
               }
@@ -264,18 +266,14 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className="group flex flex-col bg-bg-warm-gray/30 p-4 rounded-[2.5rem] border border-brand-lavender/60 shadow-premium transition-all duration-300 hover:shadow-premium hover:scale-[1.02]"
+                className="group flex flex-col bg-bg-warm-gray/30 p-8 rounded-[2.5rem] border border-brand-lavender/60 shadow-premium transition-all duration-300 hover:shadow-premium hover:scale-[1.02] hover:bg-white"
               >
-                <div className="rounded-2xl overflow-hidden shadow-premium border border-brand-lavender/30 mb-6 aspect-video sm:aspect-auto">
-                  <img 
-                    src={item.img} 
-                    alt={item.title} 
-                    className="w-full h-auto object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
+                <div className="w-16 h-16 rounded-[1.5rem] bg-gradient-to-br from-brand-lavender to-brand-lavender/40 flex items-center justify-center text-brand-text mb-8 shadow-premium transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                  <item.icon className="w-8 h-8" />
                 </div>
-                <div className="px-4 pb-4">
-                  <h3 className="text-xl font-bold text-brand-text mb-3 tracking-tight">{item.title}</h3>
-                  <p className="text-brand-text-muted leading-relaxed text-[15px] font-medium">{item.desc}</p>
+                <div className="">
+                  <h3 className="text-xl font-bold text-brand-text mb-4 tracking-tight group-hover:text-brand-accent transition-colors">{item.title}</h3>
+                  <p className="text-brand-text-muted leading-relaxed text-[16px] font-medium">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
@@ -288,41 +286,29 @@ export default function App() {
         <div className="absolute inset-0 opacity-10">
           <DecorativeBackground />
         </div>
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center relative z-10">
-          <div className="order-2 lg:order-1">
-            <h2 className="text-2xl md:text-4xl font-bold text-white mb-5 text-balance">O Gravidez Organizada reúne em um só lugar o que realmente importa na sua gravidez.</h2>
-            <p className="text-lg text-brand-lavender-dark mb-6 leading-relaxed font-medium">
-              Você acompanha sua gravidez com mais praticidade, entende melhor o desenvolvimento do bebê e visualiza o que vem a seguir em cada etapa.
-            </p>
-            <div className="grid sm:grid-cols-2 gap-4 mb-8">
-              {[
-                "Semana atual",
-                "Desenvolvimento do bebê",
-                "Exames e consultas",
-                "Próximos passos",
-                "Checklists",
-                "Linha do tempo"
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-4 text-white font-bold text-[16px]">
-                  <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-brand-accent shadow-premium">
-                    <CheckCircle2 className="w-4 h-4" />
-                  </div>
-                  {item}
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <h2 className="text-2xl md:text-4xl font-bold text-white mb-5 text-balance">O Gravidez Organizada reúne em um só lugar o que realmente importa na sua gravidez.</h2>
+          <p className="text-lg text-brand-lavender-dark mb-8 leading-relaxed font-medium">
+            Você acompanha sua gravidez com mais praticidade, entende melhor o desenvolvimento do bebê e visualiza o que vem a seguir em cada etapa.
+          </p>
+          <div className="grid sm:grid-cols-2 gap-6 mb-10 max-w-2xl mx-auto text-left">
+            {[
+              "Semana atual",
+              "Desenvolvimento do bebê",
+              "Exames e consultas",
+              "Próximos passos",
+              "Checklists",
+              "Linha do tempo"
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-4 text-white font-bold text-[16px]">
+                <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-brand-accent shadow-premium">
+                  <CheckCircle2 className="w-4 h-4" />
                 </div>
-              ))}
-            </div>
-            <Button className="w-full sm:w-auto bg-white text-brand-text hover:bg-brand-lavender" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
+                {item}
+              </div>
+            ))}
           </div>
-          <div className="order-1 lg:order-2 relative">
-            <div className="rounded-[3rem] overflow-hidden shadow-premium border-8 border-white/20">
-              <img 
-                src="https://picsum.photos/seed/pregnancy-solution-v4/1000/800" 
-                alt="App Centralizador" 
-                className="w-full h-auto"
-                referrerPolicy="no-referrer"
-              />
-            </div>
-          </div>
+          <Button className="w-full sm:w-auto bg-white text-brand-text hover:bg-brand-lavender shadow-premium shadow-white/10" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
         </div>
       </section>
 
