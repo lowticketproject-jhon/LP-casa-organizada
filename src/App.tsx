@@ -27,6 +27,7 @@ import {
   MapPin
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
+import { supabase } from './lib/supabase';
 
 // --- Components ---
 
@@ -38,13 +39,25 @@ interface ButtonProps {
   onClick?: () => void;
 }
 
-const Button = ({ children, className = "", primary = false, onClick }: ButtonProps) => (
-  <button onClick={onClick} className={`px-8 py-4 rounded-full font-bold transition-all duration-300 transform hover:scale-[1.02] active:scale-95 shadow-premium ${
-    primary 
-      ? "bg-brand-accent text-white hover:bg-brand-accent-light shadow-brand-accent/25 btn-pulse" 
-      : "glass text-brand-text border border-brand-lavender-dark hover:bg-brand-lavender/80 shadow-card"
-  } ${className}`}>
-    {children}
+const Button = ({ children, className = "", primary = false, onClick, disabled = false, loading = false }: ButtonProps & { disabled?: boolean, loading?: boolean }) => (
+  <button 
+    onClick={onClick}
+    disabled={disabled || loading}
+    className={`
+      px-8 py-4 rounded-full font-bold transition-all duration-300 transform 
+      active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed
+      ${primary 
+        ? "bg-brand-accent text-white hover:bg-brand-accent-light shadow-brand-accent/25 btn-pulse" 
+        : "glass text-brand-text border border-brand-lavender-dark hover:bg-brand-lavender/80 shadow-card"}
+      ${className}
+    `}
+  >
+    {loading ? (
+      <div className="flex items-center justify-center gap-2">
+        <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
+        <span>Processando...</span>
+      </div>
+    ) : children}
   </button>
 );
 
@@ -104,9 +117,114 @@ const DecorativeBackground = () => (
   </div>
 );
 
-// --- Main App ---
+const SuccessView = () => {
+  const [email] = useState(new URLSearchParams(window.location.search).get('email') || '');
+  const [password, setPassword] = useState('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const [done, setDone] = useState(false);
+
+  const handleRegister = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (password.length < 6) {
+      setError('A senha deve ter pelo menos 6 caracteres.');
+      return;
+    }
+    setLoading(true);
+    setError(null);
+
+    const { error: signUpError } = await supabase.auth.signUp({
+      email,
+      password,
+    });
+
+    if (signUpError) {
+      setError(signUpError.message);
+    } else {
+      setDone(true);
+    }
+    setLoading(false);
+  };
+
+  if (done) {
+    return (
+      <div className="min-h-screen bg-bg-off-white flex items-center justify-center p-6 relative">
+        <DecorativeBackground />
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="max-w-md w-full bg-white p-10 rounded-[2.5rem] shadow-premium border border-brand-lavender/40 text-center relative z-10"
+        >
+          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600 shadow-premium">
+            <CheckCircle2 className="w-10 h-10" />
+          </div>
+          <h2 className="text-3xl font-black text-brand-text mb-4">Cadastro Criado!</h2>
+          <p className="text-brand-text-muted mb-8 font-medium">Verifique seu e-mail para confirmar a conta e começar a usar o Gravidez Organizada.</p>
+          <Button primary className="w-full" onClick={() => window.location.href = '/'}>Voltar ao Início</Button>
+        </motion.div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-bg-off-white flex items-center justify-center p-6 relative">
+      <DecorativeBackground />
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="max-w-md w-full bg-white p-10 rounded-[2.5rem] shadow-premium border border-brand-lavender/40 relative z-10"
+      >
+        <div className="text-center mb-8">
+          <div className="inline-block px-4 py-2 bg-brand-lavender/30 rounded-full text-brand-accent text-xs font-black uppercase tracking-widest mb-4">
+            Compra Aprovada
+          </div>
+          <h2 className="text-3xl font-black text-brand-text mb-2 tracking-tight">Crie sua Senha</h2>
+          <p className="text-brand-text-muted font-medium">Falta só um passo para acessar seu portal.</p>
+        </div>
+
+        <form onSubmit={handleRegister} className="space-y-5">
+          <div>
+            <label className="block text-xs font-black uppercase tracking-widest text-brand-text-muted mb-2 ml-4">E-mail</label>
+            <input 
+              type="email" 
+              value={email} 
+              disabled 
+              className="w-full px-6 py-4 rounded-2xl bg-bg-warm-gray/30 border border-brand-lavender/40 text-brand-text-muted font-medium focus:outline-none"
+            />
+          </div>
+          <div>
+            <label className="block text-xs font-black uppercase tracking-widest text-brand-text-muted mb-2 ml-4">Escolha uma Senha</label>
+            <input 
+              type="password" 
+              placeholder="Mínimo 6 caracteres"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+              className="w-full px-6 py-4 rounded-2xl bg-white border border-brand-lavender/40 text-brand-text font-medium focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent focus:outline-none transition-all"
+            />
+          </div>
+          
+          {error && (
+            <div className="p-4 bg-red-50 rounded-xl text-red-600 text-sm font-bold flex items-center gap-2">
+              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
+              {error}
+            </div>
+          )}
+
+          <Button primary loading={loading} className="w-full mt-4 py-5 text-base shadow-brand-accent/40 shadow-premium">Concluir Cadastro</Button>
+        </form>
+      </motion.div>
+    </div>
+  );
+};
 
 export default function App() {
+  const isSuccessPage = window.location.pathname === '/sucesso' || new URLSearchParams(window.location.search).has('email');
+
+  if (isSuccessPage) {
+    return <SuccessView />;
+  }
+
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-brand-accent/30 selection:text-brand-text">
       {/* 1. HERO SECTION */}
