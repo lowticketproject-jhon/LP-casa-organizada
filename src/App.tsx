@@ -133,14 +133,23 @@ const SuccessView = () => {
     setLoading(true);
     setError(null);
 
-    const { error: signUpError } = await supabase.auth.signUp({
+    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
       email,
       password,
     });
 
     if (signUpError) {
       setError(signUpError.message);
-    } else {
+    } else if (signUpData?.user) {
+      // Update purchase_access to link the user and mark as used
+      await supabase
+        .from('purchase_access')
+        .update({ 
+          used: true, 
+          auth_user_id: signUpData.user.id 
+        })
+        .eq('email', email);
+        
       setDone(true);
     }
     setLoading(false);
@@ -159,8 +168,8 @@ const SuccessView = () => {
             <CheckCircle2 className="w-10 h-10" />
           </div>
           <h2 className="text-3xl font-black text-brand-text mb-4">Cadastro Criado!</h2>
-          <p className="text-brand-text-muted mb-8 font-medium">Verifique seu e-mail para confirmar a conta e começar a usar o Gravidez Organizada.</p>
-          <Button primary className="w-full" onClick={() => window.location.href = '/'}>Voltar ao Início</Button>
+          <p className="text-brand-text-muted mb-8 font-medium">Sua conta está ativa. Clique abaixo para entrar no seu portal agora.</p>
+          <Button primary className="w-full text-lg py-5 shadow-brand-accent/40 shadow-premium" onClick={() => window.location.href = 'https://gravidezorganizada.online'}>ACESSAR MEU APLICATIVO</Button>
         </motion.div>
       </div>
     );

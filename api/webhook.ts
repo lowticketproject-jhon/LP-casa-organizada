@@ -15,24 +15,21 @@ export default async function handler(req: any, res: any) {
     const supabase = createClient(supabaseUrl || '', supabaseServiceKey || '');
 
     try {
-      // 1. Log the webhook event
-      await supabase.from('payments_webhook_log').insert({
-        provider: 'cakto',
-        event_type: event,
-        payload: req.body,
-        processed: true
+      // 1. Generate a unique token for the purchase (simplified UUID)
+      const token = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+
+      // 2. Insert into purchase_access with 'paid' status
+      const { error } = await supabase.from('purchase_access').insert({
+        email: customer.email,
+        payment_status: 'paid',
+        token: token,
+        used: false,
+        expires_at: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000).toISOString() // 7 days expiry
       });
 
-      // 2. Upsert subscription/profile
-      await supabase.from('subscriptions').upsert({
-        email: customer.email,
-        status: 'active',
-        plan_name: 'Gravidez Organizada',
-        payment_provider: 'cakto',
-        provider_transaction_id: payment?.id
-      }, { onConflict: 'email' });
+      if (error) throw error;
 
-      return res.status(200).json({ message: 'Purchase processed and recorded' });
+      return res.status(200).json({ message: 'Purchase processed and token generated' });
     } catch (error) {
       console.error('Webhook processing error:', error);
       return res.status(500).json({ error: 'Internal server error' });
