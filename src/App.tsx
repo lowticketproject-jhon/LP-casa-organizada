@@ -343,6 +343,13 @@ export default function App() {
               <h2 className="text-2xl md:text-3xl font-black text-brand-text mb-6 leading-tight">
                 Em muitos momentos da gravidez, o mais difícil não é só lidar com as mudanças. É <span className="text-brand-accent">não saber exatamente</span> o que acompanhar em cada fase.
               </h2>
+              <div className="mb-8 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60">
+                <img 
+                  src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774575000/Gemini_Generated_Image_93jujr93jujr93ju-_1__q2axti.webp" 
+                  alt="Acompanhamento da gravidez" 
+                  className="w-full h-auto"
+                />
+              </div>
               <div className="space-y-4 mb-8">
                 <p className="text-brand-text-muted text-lg leading-relaxed font-medium">
                   Entre consultas, exames, sintomas e informações espalhadas, muitas gestantes acabam se sentindo confusas ou inseguras sobre o que está acontecendo agora e o que vem a seguir.
@@ -352,23 +359,6 @@ export default function App() {
                 </p>
               </div>
               <Button primary className="w-full sm:w-auto" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
-            </motion.div>
-            
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-              className="relative"
-            >
-              <div className="rounded-[2.5rem] overflow-hidden shadow-premium border border-brand-lavender/60">
-                <img 
-                  src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774574998/Gemini_Generated_Image_93jujr93jujr93ju-_1__1_po3aq5.webp" 
-                  alt="Acompanhamento da gravidez" 
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand-accent/5 rounded-full blur-3xl -z-10" />
             </motion.div>
           </div>
         </div>
