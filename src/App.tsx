@@ -336,7 +336,6 @@ export default function App() {
                   O Gravidez Organizada foi criado para reunir em um só lugar o que ajuda você a acompanhar sua jornada com mais clareza, organização e tranquilidade.
                 </p>
               </div>
-              <Button primary onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
             </motion.div>
         </div>
       </section>
