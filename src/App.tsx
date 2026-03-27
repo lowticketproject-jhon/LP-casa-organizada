@@ -328,7 +328,7 @@ export default function App() {
               <h2 className="text-2xl md:text-3xl font-black text-brand-text mb-6 leading-tight">
                 Em muitos momentos da gravidez, o mais difícil não é só lidar com as mudanças. É <span className="text-brand-accent">não saber exatamente</span> o que acompanhar em cada fase.
               </h2>
-              <div className="mb-8 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-2xl mx-auto">
+              <div className="mb-8 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-2xl md:max-w-lg mx-auto">
                 <img 
                   src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774575000/Gemini_Generated_Image_93jujr93jujr93ju-_1__q2axti.webp" 
                   alt="Acompanhamento da gravidez" 
@@ -349,26 +349,7 @@ export default function App() {
       </section>
 
       {/* 3. FAIXA DE BENEFÍCIOS RÁPIDOS */}
-      <section className="py-8 bg-white border-b border-brand-lavender/60 relative z-20">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {[
-              { icon: Clock, text: "Semana atual da gravidez" },
-              { icon: Baby, text: "Desenvolvimento do bebê" },
-              { icon: Stethoscope, text: "Exames e consultas" },
-              { icon: Zap, text: "Próximos passos importantes" },
-            ].map((item, i) => (
-              <div key={i} className="flex items-center justify-center gap-3 group cursor-default">
-                <div className="w-10 h-10 rounded-xl bg-brand-lavender/50 flex items-center justify-center text-brand-accent transition-all duration-300 group-hover:bg-brand-accent group-hover:text-white">
-                  <item.icon className="w-5 h-5" />
-                </div>
-                <span className="text-sm md:text-base font-bold text-brand-text leading-tight">{item.text}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      {/* REMOVIDA */}
       {/* 4. BLOCO DE VITRINE VISUAL */}
       <section className="py-16 px-6 bg-white relative overflow-hidden border-b border-brand-lavender/40">
         <DecorativeBackground />
