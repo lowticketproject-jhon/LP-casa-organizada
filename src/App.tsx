@@ -332,18 +332,17 @@ export default function App() {
       {/* 2. SEÇÃO — DOR CURTA */}
       <section className="py-20 px-6 bg-white relative overflow-hidden border-b border-brand-lavender/40">
         <DecorativeBackground />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+        <div className="max-w-3xl mx-auto relative z-10 text-center">
             <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true }}
             >
               <h2 className="text-2xl md:text-3xl font-black text-brand-text mb-6 leading-tight">
                 Em muitos momentos da gravidez, o mais difícil não é só lidar com as mudanças. É <span className="text-brand-accent">não saber exatamente</span> o que acompanhar em cada fase.
               </h2>
-              <div className="mb-8 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60">
+              <div className="mb-8 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-md mx-auto">
                 <img 
                   src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774575000/Gemini_Generated_Image_93jujr93jujr93ju-_1__q2axti.webp" 
                   alt="Acompanhamento da gravidez" 
@@ -358,9 +357,8 @@ export default function App() {
                   O Gravidez Organizada foi feito para reunir em um só lugar o que realmente importa na sua gravidez.
                 </p>
               </div>
-              <Button primary className="w-full sm:w-auto" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
+              <Button primary onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
             </motion.div>
-          </div>
         </div>
       </section>
 
@@ -598,10 +596,6 @@ export default function App() {
                   <span className="text-2xl font-bold text-brand-text self-end mb-3">,90</span>
                 </div>
                 <p className="text-brand-accent font-black text-xs mt-2 uppercase tracking-widest">Pagamento único</p>
-              </div>
-
-              <div className="mb-6 rounded-2xl overflow-hidden shadow-premium">
-                <img src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774574998/Gemini_Generated_Image_j46tlgj46tlgj46t-_1__wwoxhb.webp" alt="Oferta Gravidez Organizada" className="w-full h-auto" />
               </div>
 
               <Button primary className="w-full text-base py-5 mb-5 shadow-brand-accent/40 bg-green-600 hover:bg-green-500 font-black" onClick={() => window.open('https://pay.cakto.com.br/koqudon_817260', '_blank')}>SIM! QUERO ACESSAR O GRAVIDEZ ORGANIZADA</Button>
