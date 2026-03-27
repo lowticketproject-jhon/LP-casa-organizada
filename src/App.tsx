@@ -274,7 +274,7 @@ export default function App() {
           >
             <div className="relative z-10 rounded-[2rem] overflow-hidden">
               <img 
-                src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774574998/Gemini_Generated_Image_8a6giu8a6giu8a6g-removebg-preview-_1__zhggnq.webp" 
+                src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774495739/1774438917689-removebg-preview_lenqun.png" 
                 alt="Gravidez Organizada App" 
                 className="w-full h-auto"
               />
