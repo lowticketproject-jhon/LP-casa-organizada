@@ -359,15 +359,15 @@ export default function App() {
       {/* 3. FAIXA DE BENEFÍCIOS RÁPIDOS */}
       {/* REMOVIDA */}
       {/* 4. BLOCO DE VITRINE VISUAL */}
-      <section className="py-8 px-6 bg-white relative overflow-hidden border-b border-brand-lavender/40">
+      <section className="py-8 px-6 bg-brand-accent relative overflow-hidden border-b border-white/10">
         <DecorativeBackground />
-        <div className="max-w-7xl mx-auto relative z-10">
+<div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-5xl font-black text-brand-text mb-4 text-balance tracking-tight">O que você acompanha no app</h2>
-            <p className="text-brand-text-muted max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">Tudo pensado para ajudar você a acompanhar sua gravidez com mais praticidade, entendimento e direção.</p>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 text-balance tracking-tight">O que você acompanha no app</h2>
+            <p className="text-brand-lavender-dark max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">Tudo pensado para ajudar você a acompanhar sua gravidez com mais praticidade, entendimento e direção.</p>
           </div>
           
-<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 icon: Calendar,
@@ -401,56 +401,29 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className={`group flex flex-col bg-bg-warm-gray/30 p-6 rounded-[2rem] border border-brand-lavender/60 shadow-premium transition-all duration-300 hover:shadow-premium hover:scale-[1.02] hover:bg-white`}
+                className={`group flex flex-col bg-white/10 p-6 rounded-[2rem] border border-white/20 shadow-premium transition-all duration-300 hover:shadow-premium hover:scale-[1.02] hover:bg-white/20`}
               >
-                <div className="w-14 h-14 rounded-[1.5rem] bg-gradient-to-br from-brand-lavender to-brand-lavender/40 flex items-center justify-center text-brand-text mb-4 shadow-premium transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                <div className="w-14 h-14 rounded-[1.5rem] bg-white/20 flex items-center justify-center text-white mb-4 shadow-premium transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
                   {item.icon && <item.icon className="w-7 h-7" />}
                 </div>
                 <div className="">
-                  <h3 className="text-lg font-bold text-brand-text mb-2 tracking-tight group-hover:text-brand-accent transition-colors">{item.title}</h3>
-                  <p className="text-brand-text-muted leading-relaxed text-[15px] font-medium">{item.desc}</p>
+                  <h3 className="text-lg font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.title}</h3>
+                  <p className="text-brand-lavender-dark leading-relaxed text-[15px] font-medium">{item.desc}</p>
                 </div>
               </motion.div>
             ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Button primary onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
           </div>
         </div>
       </section>
 
       {/* 5. BLOCO DE SOLUÇÃO */}
-      <section className="py-6 px-6 bg-brand-accent relative overflow-hidden border-t border-white/10">
-        <div className="absolute inset-0 opacity-10">
-          <DecorativeBackground />
-        </div>
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <h2 className="text-xl md:text-3xl font-bold text-white mb-4 text-balance">O Gravidez Organizada reúne em um só lugar o que realmente importa na sua gravidez.</h2>
-          <p className="text-base text-brand-lavender-dark mb-6 leading-relaxed font-medium">
-            Você acompanha sua gravidez com mais praticidade, entende melhor o desenvolvimento do bebê e visualiza o que vem a seguir em cada etapa.
-          </p>
-          <div className="grid sm:grid-cols-2 gap-4 mb-6 max-w-2xl mx-auto text-left">
-            {[
-              "Semana atual",
-              "Desenvolvimento do bebê",
-              "Exames e consultas",
-              "Próximos passos",
-              "Checklists",
-              "Linha do tempo"
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-4 text-white font-bold text-[16px]">
-                <div className="w-7 h-7 rounded-full bg-white flex items-center justify-center text-brand-accent shadow-premium">
-                  <CheckCircle2 className="w-4 h-4" />
-                </div>
-                {item}
-              </div>
-            ))}
-          </div>
-          <Button className="w-full sm:w-auto bg-white text-brand-text hover:bg-brand-lavender shadow-premium shadow-white/10" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
-        </div>
-      </section>
+      {/* REMOVIDO */}
 
-
-
-
-{/* 7. SEÇÃO DE BENEFÍCIOS */}
+      {/* 7. SEÇÃO DE BENEFÍCIOS */}
       <section className="py-6 px-6 bg-bg-warm-gray relative">
         <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
