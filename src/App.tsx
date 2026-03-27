@@ -343,14 +343,6 @@ export default function App() {
                   O Gravidez Organizada foi criado para reunir em um só lugar o que realmente importa na sua gravidez.
                 </p>
               </div>
-              <div className="space-y-3 mb-6">
-                <p className="text-brand-text-muted text-lg leading-relaxed font-medium">
-                  Entre consultas, exames, sintomas e informações espalhadas, muitas gestantes acabam se sentindo confusas ou inseguras sobre o que está acontecendo agora e o que vem a seguir.
-                </p>
-                <p className="text-brand-text-muted text-lg leading-relaxed font-bold">
-                  O Gravidez Organizada foi feito para reunir em um só lugar o que realmente importa na sua gravidez.
-                </p>
-              </div>
               <Button primary onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
             </motion.div>
         </div>
@@ -415,7 +407,9 @@ export default function App() {
           </div>
           
           <div className="text-center mt-8">
-            <Button primary onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
+            <button onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-4 rounded-full font-bold bg-white text-brand-text shadow-lg hover:bg-brand-lavender transition-all duration-300">
+              QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA
+            </button>
           </div>
         </div>
       </section>
@@ -423,8 +417,8 @@ export default function App() {
       {/* 5. BLOCO DE SOLUÇÃO */}
       {/* REMOVIDO */}
 
-      {/* 7. SEÇÃO DE BENEFÍCIOS */}
-      <section className="py-6 px-6 bg-bg-warm-gray relative">
+{/* 7. SEÇÃO DE BENEFÍCIOS */}
+      <section className="py-6 px-6 bg-white border-y border-brand-lavender/40 relative">
         <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-4">
@@ -439,12 +433,12 @@ export default function App() {
               { icon: Baby, title: "Mais conexão com o desenvolvimento do bebê", desc: "Acompanhar o crescimento cria um vínculo mais forte a cada semana." },
               { icon: Compass, title: "Mais clareza sobre o que vem a seguir", desc: "Visualize o que observar e o que vem a seguir em cada fase." }
             ].map((item, i) => (
-              <div key={i} className="p-5 rounded-[2rem] bg-brand-accent shadow-premium border border-brand-accent/30 hover:shadow-premium transition-all duration-500 group">
-                <div className="w-9 h-9 rounded-lg bg-white/20 flex items-center justify-center text-white mb-3 group-hover:bg-white group-hover:text-brand-accent transition-colors">
+              <div key={i} className="p-5 rounded-[2rem] bg-white shadow-card border-2 border-brand-accent/40 hover:shadow-premium hover:border-brand-accent transition-all duration-500 group">
+                <div className="w-9 h-9 rounded-lg bg-brand-lavender flex items-center justify-center text-brand-accent mb-3 group-hover:bg-brand-accent group-hover:text-white transition-colors">
                   <item.icon className="w-4 h-4" />
                 </div>
-                <h3 className="text-base font-bold text-white mb-1 tracking-tight">{item.title}</h3>
-                <p className="text-brand-lavender-dark leading-relaxed text-[13px] font-medium">{item.desc}</p>
+                <h3 className="text-base font-bold text-brand-text mb-1 tracking-tight">{item.title}</h3>
+                <p className="text-brand-text-muted leading-relaxed text-[13px] font-medium">{item.desc}</p>
               </div>
             ))}
           </div>
