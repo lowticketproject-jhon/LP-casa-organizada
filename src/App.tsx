@@ -262,7 +262,7 @@ export default function App() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl md:text-5xl lg:text-6xl font-black text-brand-text leading-[1.1] mb-4 max-w-5xl mx-auto text-balance tracking-tight"
           >
-           Saiba em que fase da gravidez você está, acompanhe o desenvolvimento do bebê e veja os <span className="text-brand-accent">próximos passos importantes</span> em um só lugar.
+           Pare de se sentir perdida na gravidez: saiba o que acompanhar em cada fase, entenda o que está acontecendo agora e veja os <span className="text-brand-accent">próximos passos importantes</span> em um só lugar.
           </motion.h1>
 
           {/* Mockup Principal */}
@@ -291,31 +291,38 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-brand-text-muted mb-6 max-w-3xl mx-auto leading-relaxed font-medium"
           >
-            Um app prático para ajudar você a acompanhar sua gravidez com mais clareza, organizar exames e consultas e se sentir menos perdida em cada fase.
+            Um app prático para ajudar você a acompanhar sua gravidez com mais clareza, organizar exames e consultas e ter uma visão mais simples do que realmente importa em cada etapa.
           </motion.p>
+
+          {/* Microtexto */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+            className="flex flex-wrap items-center justify-center gap-4 mt-4 text-[11px] font-black uppercase tracking-widest text-brand-text-muted/60"
+          >
+            <span>Ideal para mães de primeira viagem e também para quem já tem filhos</span>
+            <span className="w-1 h-1 rounded-full bg-brand-lavender-dark" />
+            <span>Acesso imediato no celular</span>
+            <span className="w-1 h-1 rounded-full bg-brand-lavender-dark" />
+            <span>Pagamento único</span>
+            <span className="w-1 h-1 rounded-full bg-brand-lavender-dark" />
+            <span>Sem mensalidade</span>
+          </motion.div>
 
           {/* CTA Button */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center"
+            className="mt-8"
           >
             <Button primary className="text-lg px-12 py-5" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
-
-            {/* Microtexto */}
-            <div className="flex items-center justify-center gap-4 mt-4 text-[11px] font-black uppercase tracking-widest text-brand-text-muted/60">
-              <span>Acesso imediato no celular</span>
-              <span className="w-1 h-1 rounded-full bg-brand-lavender-dark" />
-              <span>Pagamento único</span>
-              <span className="w-1 h-1 rounded-full bg-brand-lavender-dark" />
-              <span>Sem mensalidade</span>
-            </div>
           </motion.div>
         </div>
       </header>
 
-      {/* 2. SEÇÃO — DOR CURTA */}
+{/* 2. SEÇÃO — DOR CURTA */}
       <section className="py-12 px-6 bg-white relative overflow-hidden border-b border-brand-lavender/40">
         <DecorativeBackground />
         <div className="max-w-3xl mx-auto relative z-10 text-center">
@@ -325,22 +332,23 @@ export default function App() {
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               viewport={{ once: true }}
             >
-<h2 className="text-2xl md:text-3xl font-black text-brand-text mb-4 leading-tight">
-                Se sentir perdida na gravidez é mais comum do que parece
+              <h2 className="text-2xl md:text-3xl font-black text-brand-text mb-4 leading-tight">
+                Seja sua primeira gravidez ou não, uma coisa é comum:
+                <span className="text-brand-accent"> em muitos momentos, fica difícil saber exatamente o que acompanhar.</span>
               </h2>
-              <div className="mb-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-2xl md:max-w-lg mx-auto">
-                <img 
-                  src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774575000/Gemini_Generated_Image_93jujr93jujr93ju-_1__q2axti.webp" 
-                  alt="Acompanhamento da gravidez" 
-                  className="w-full h-auto"
-                />
-              </div>
               <div className="space-y-3 mb-6">
                 <p className="text-brand-text-muted text-lg leading-relaxed font-medium">
-                  Entre exames, consultas, sintomas e informações espalhadas, muitas gestantes acabam sem saber exatamente o que acompanhar em cada fase.
+                  Entre exames, consultas, sintomas, mudanças no corpo e informações espalhadas, muitas gestantes acabam com a sensação de que precisam lembrar de tudo ao mesmo tempo.
+                </p>
+                <p className="text-brand-text-muted text-lg leading-relaxed font-medium">
+                  Para quem está vivendo a primeira gestação, tudo pode parecer novo demais. Para quem já tem filhos, a rotina pode deixar ainda mais difícil parar, organizar as informações e acompanhar cada fase com calma.
                 </p>
                 <p className="text-brand-text-muted text-lg leading-relaxed font-bold">
-                  O Gravidez Organizada foi criado para reunir em um só lugar o que realmente importa na sua gravidez.
+                  E no meio disso tudo surge a sensação de:<br />
+                  não saber exatamente o que merece atenção agora<br />
+                  ter dúvidas sobre o que vem a seguir<br />
+                  depender de informações soltas<br />
+                  sentir que está acompanhando a gravidez no improviso
                 </p>
               </div>
               <Button primary onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
@@ -351,40 +359,40 @@ export default function App() {
       {/* 3. FAIXA DE BENEFÍCIOS RÁPIDOS */}
       {/* REMOVIDA */}
       {/* 4. BLOCO DE VITRINE VISUAL */}
-      <section className="py-8 px-6 bg-brand-accent relative overflow-hidden border-b border-white/10">
+<section className="py-8 px-6 bg-brand-accent relative overflow-hidden border-b border-white/10">
         <DecorativeBackground />
-<div className="max-w-7xl mx-auto relative z-10">
+        <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 text-balance tracking-tight">O que você acompanha no app</h2>
-            <p className="text-brand-lavender-dark max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">Tudo pensado para ajudar você a acompanhar sua gravidez com mais praticidade, entendimento e direção.</p>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 text-balance tracking-tight">Conheça o Painel de Clareza da Gravidez</h2>
+            <p className="text-brand-lavender-dark max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">Um sistema simples dentro do app para ajudar você a acompanhar sua gestação com mais direção em 5 pontos principais:</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               {
                 icon: Calendar,
-                title: "Semana atual da gravidez",
-                desc: "Saiba em que fase você está."
+                title: "1. Fase atual da gravidez",
+                desc: "Saiba em que semana você está e entenda melhor o momento atual da sua gestação."
               },
               {
                 icon: Baby,
-                title: "Desenvolvimento do bebê",
-                desc: "Entenda o que está acontecendo em cada etapa."
+                title: "2. Desenvolvimento do bebê",
+                desc: "Acompanhe o que está acontecendo em cada etapa do crescimento do bebê."
               },
               {
                 icon: Stethoscope,
-                title: "Exames e consultas",
-                desc: "Tenha mais clareza sobre o que acompanhar."
+                title: "3. Exames e consultas",
+                desc: "Tenha mais clareza sobre o que observar e acompanhar ao longo da gravidez."
               },
               {
                 icon: Compass,
-                title: "Próximos passos importantes",
-                desc: "Veja o que merece sua atenção agora e o que vem a seguir."
+                title: "4. Próximos passos importantes",
+                desc: "Veja o que merece sua atenção agora e o que vem a seguir em cada fase."
               },
               {
                 icon: ClipboardList,
-                title: "Checklists e linha do tempo",
-                desc: "Organize sua jornada do positivo ao parto."
+                title: "5. Checklists e linha do tempo",
+                desc: "Organize sua jornada do positivo ao parto de forma mais prática e visual."
               }
             ].map((item, i) => (
               <motion.div 
@@ -421,17 +429,18 @@ export default function App() {
       <section className="py-6 px-6 bg-white border-y border-brand-lavender/40 relative">
         <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-4">
-            <h2 className="text-xl md:text-3xl font-bold text-brand-text mb-3">O que muda quando você tem mais clareza</h2>
+<div className="text-center mb-4">
+            <h2 className="text-xl md:text-3xl font-bold text-brand-text mb-3">O que muda quando você deixa de acompanhar a gravidez no improviso</h2>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
             {[
-              { icon: ShieldCheck, title: "Mais organização no dia a dia", desc: "Você entende melhor o que está acontecendo e o que vem a seguir." },
-              { icon: Zap, title: "Menos confusão com informações soltas", desc: "Exames, prazos e informações importantes ficam mais fáceis de acompanhar." },
-              { icon: ClipboardList, title: "Mais tranquilidade para acompanhar cada etapa", desc: "Reduza o estresse e a ansiedade entendendo os próximos passos." },
-              { icon: Baby, title: "Mais conexão com o desenvolvimento do bebê", desc: "Acompanhar o crescimento cria um vínculo mais forte a cada semana." },
-              { icon: Compass, title: "Mais clareza sobre o que vem a seguir", desc: "Visualize o que observar e o que vem a seguir em cada fase." }
+              { icon: ShieldCheck, title: "Você entende melhor a fase em que está", desc: "Em vez de ficar tentando juntar informações soltas, você visualiza com mais clareza o momento atual da sua gravidez." },
+              { icon: Zap, title: "Você sabe melhor o que observar agora", desc: "Fica mais fácil entender o que merece sua atenção nesta fase, sem depender só da memória." },
+              { icon: Compass, title: "Você acompanha os próximos passos com mais direção", desc: "Em vez de sentir que está sempre atrasada, você consegue visualizar o que vem a seguir." },
+              { icon: Stethoscope, title: "Você se organiza melhor para exames e consultas", desc: "O app ajuda você a acompanhar pontos importantes da gestação de forma mais prática." },
+              { icon: Heart, title: "Você vive a gravidez com menos confusão mental", desc: "Quando tudo está mais claro, a rotina fica menos pesada e mais tranquila de acompanhar." },
+              { icon: Baby, title: "Você fortalece sua conexão com o desenvolvimento do bebê", desc: "Acompanhar cada fase com mais entendimento torna a experiência mais presente e significativa." }
             ].map((item, i) => (
               <div key={i} className="p-5 rounded-[2rem] bg-white shadow-card border-2 border-brand-accent/40 hover:shadow-premium hover:border-brand-accent transition-all duration-500 group">
                 <div className="w-9 h-9 rounded-lg bg-brand-lavender flex items-center justify-center text-brand-accent mb-3 group-hover:bg-brand-accent group-hover:text-white transition-colors">
@@ -445,12 +454,12 @@ export default function App() {
         </div>
       </section>
 
-      {/* 8. BLOCO DE VALOR */}
+{/* 8. BLOCO DE VALOR */}
       <section className="py-4 px-6 bg-bg-warm-gray relative">
         <DecorativeBackground />
         <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h2 className="text-lg md:text-xl font-bold text-brand-text mb-3 text-balance">Tudo o que você precisa em um só lugar para acompanhar sua gravidez com mais tranquilidade</h2>
-          <p className="text-brand-text-muted text-base leading-relaxed font-medium">Por um valor único, você tem acesso a um app que ajuda a acompanhar a gravidez, entender o desenvolvimento do bebê e visualizar os próximos passos sem depender de informações soltas.</p>
+          <h2 className="text-lg md:text-xl font-bold text-brand-text mb-3 text-balance">Tudo o que você precisa em um só lugar para acompanhar sua gravidez com mais clareza</h2>
+          <p className="text-brand-text-muted text-base leading-relaxed font-medium">Por um valor único, você recebe acesso a um app que ajuda você a: saber em que fase da gravidez está, acompanhar o desenvolvimento do bebé, visualizar exames e consultas, entender os próximos passos importantes, organizar sua jornada do positivo ao parto. Sem depender de anotações soltas, memória ou informações espalhadas.</p>
         </div>
       </section>
 
@@ -459,15 +468,14 @@ export default function App() {
         <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-4">
-            <h2 className="text-xl md:text-3xl font-bold text-brand-text mb-3">Bônus exclusivos para deixar sua jornada ainda mais prática</h2>
-            <p className="text-brand-text-muted text-base font-medium">Materiais complementares inclusos para você de presente.</p>
+            <h2 className="text-xl md:text-3xl font-bold text-brand-text mb-3">Bônus para deixar sua jornada ainda mais prática</h2>
           </div>
 
           <div className="grid md:grid-cols-3 gap-4">
             {[
-              { icon: Stethoscope, tag: "Bônus 1", title: "Checklist da Consulta Pré-Natal", desc: "Um guia simples com o que observar e o que levar para suas consultas." },
-              { icon: ShoppingBag, tag: "Bônus 2", title: "Checklist da Maternidade", desc: "Uma lista prática para ajudar você a se preparar sem exageros." },
-              { icon: MessageCircleQuestion, tag: "Bônus 3", title: "Perguntas para levar ao obstetra", desc: "Um material de apoio com perguntas úteis para tirar dúvidas importantes." }
+              { icon: Stethoscope, tag: "Bônus 1", title: "Checklist da Consulta Pré-Natal", desc: "Um guia simples para ajudar você a se organizar melhor para suas consultas." },
+              { icon: ShoppingBag, tag: "Bônus 2", title: "Checklist da Maternidade", desc: "Uma lista prática para ajudar você a se preparar com mais objetividade." },
+              { icon: MessageCircleQuestion, tag: "Bônus 3", title: "Perguntas para levar ao obstetra", desc: "Um material de apoio com perguntas úteis para esclarecer dúvidas importantes nas consultas." }
             ].map((item, i) => (
               <Card key={i} className="relative group bg-bg-off-white p-5">
                 <div className="absolute top-4 right-4 bg-brand-accent text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-premium">{item.tag}</div>
@@ -499,16 +507,16 @@ export default function App() {
           >
 <div className="p-6 bg-brand-accent border-r border-white/20">
               <h3 className="text-xl font-bold text-white mb-4 font-display">O que você recebe ao comprar hoje</h3>
-              <ul className="space-y-2">
+<ul className="space-y-2">
                 {[
                   "Acesso ao app Gravidez Organizada",
-                  "Semana atual da gestação",
+                  "Fase atual da gestação",
                   "Desenvolvimento do bebé",
                   "Exames e consultas",
                   "Próximos passos importantes",
                   "Checklists práticos",
                   "Linha do tempo da gravidez",
-                  "Bônus",
+                  "Bônus inclusos",
                   "Checklist da Consulta Pré-Natal",
                   "Checklist da Maternidade",
                   "Perguntas para levar ao obstetra"
@@ -563,7 +571,7 @@ export default function App() {
             <div className="text-center md:text-left">
               <h3 className="text-lg md:text-xl font-bold text-brand-text mb-3 font-display">Garantia de 7 dias</h3>
               <p className="text-brand-text-muted text-[15px] leading-relaxed font-medium">
-                Você acessa o app com tranquilidade. Se dentro de 7 dias entender que ele não faz sentido para este momento, poderá solicitar o cancelamento dentro do prazo informado.
+                Você pode acessar o Gravidez Organizada com tranquilidade. Se dentro de 7 dias entender que ele não faz sentido para este momento da sua gravidez, poderá solicitar o cancelamento dentro do prazo informado.
               </p>
             </div>
           </div>
@@ -582,15 +590,19 @@ export default function App() {
           <div className="glass bg-brand-lavender rounded-[2.5rem] p-6 md:p-8 shadow-premium border border-brand-lavender/60">
             <FAQItem 
               question="Funciona em qualquer celular?" 
-              answer="Sim." 
+              answer="Sim. O app foi pensado para funcionar no celular de forma prática e simples." 
             />
             <FAQItem 
-              question="Serve para qualquer fase da gravidez?" 
-              answer="Sim, desde o início até fases mais avançadas." 
+              question="Serve para mães de primeira viagem?" 
+              answer="Sim. O Gravidez Organizada ajuda você a entender melhor cada fase da gravidez e acompanhar os próximos passos com mais clareza." 
+            />
+            <FAQItem 
+              question="Serve para quem já tem filhos?" 
+              answer="Sim. Mesmo em uma nova gestação, o app ajuda a centralizar o que importa e tornar a rotina mais organizada." 
             />
             <FAQItem 
               question="Substitui acompanhamento médico?" 
-              answer="Não. É uma ferramenta de apoio e organização." 
+              answer="Não. O Gravidez Organizada é uma ferramenta de apoio e organização. Ele não substitui acompanhamento médico profissional." 
             />
           </div>
         </div>
@@ -601,7 +613,7 @@ export default function App() {
         <DecorativeBackground />
         <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-2xl md:text-4xl font-black text-brand-text mb-3 leading-[1.1] font-display text-balance tracking-tight">Tenha sua gravidez <span className="text-brand-accent">mais clara, organizada e acompanhada</span> em um só lugar</h2>
-          <p className="text-base md:text-lg text-brand-text-muted mb-6 max-w-3xl mx-auto font-medium">Se você quer entender melhor cada etapa da sua gestação sem depender de informações soltas, o Gravidez Organizada foi feito para você.</p>
+          <p className="text-base md:text-lg text-brand-text-muted mb-6 max-w-3xl mx-auto font-medium">Seja sua primeira gravidez ou não, o Gravidez Organizada foi feito para ajudar você a entender melhor cada etapa, acompanhar o desenvolvimento do bebé e saber o que observar em cada fase sem depender de informações soltas.</p>
           <Button primary className="text-lg py-4 px-10 shadow-brand-accent/40" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
           
           <div className="mt-6 flex justify-center items-center gap-8 opacity-50 grayscale font-bold text-[12px] uppercase tracking-widest">
