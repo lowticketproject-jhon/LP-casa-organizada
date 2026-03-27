@@ -362,27 +362,6 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             {[
               {
-                icon: Calendar,
-                title: "Semana atual da gravidez",
-                desc: "Saiba em que fase você está e acompanhe sua evolução com mais clareza."
-              },
-              {
-                icon: Baby,
-                title: "Desenvolvimento do bebê",
-                desc: "Veja o que está acontecendo em cada etapa da gestação."
-              },
-              {
-                isImage: true,
-                title: "Exames e consultas",
-                desc: "Tenha mais organização para acompanhar o que merece sua atenção.",
-                img: "https://res.cloudinary.com/dynjqdxw8/image/upload/v1774579194/Gemini_Generated_Image_6ljw1j6ljw1j6ljw-removebg-preview_dtdmah.webp"
-              },
-              {
-                icon: Compass,
-                title: "Próximos passos importantes",
-                desc: "Visualize o que observar e o que vem a seguir em cada fase."
-              },
-              {
                 icon: ClipboardList,
                 title: "Checklists e linha do tempo",
                 desc: "Tenha uma visão mais prática da sua jornada do positivo ao parto."
@@ -394,17 +373,11 @@ export default function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
                 viewport={{ once: true }}
-                className={`group flex flex-col bg-bg-warm-gray/30 p-8 rounded-[2.5rem] border border-brand-lavender/60 shadow-premium transition-all duration-300 hover:shadow-premium hover:scale-[1.02] hover:bg-white ${i === 2 ? 'lg:col-span-1' : ''}`}
+                className={`group flex flex-col bg-bg-warm-gray/30 p-8 rounded-[2.5rem] border border-brand-lavender/60 shadow-premium transition-all duration-300 hover:shadow-premium hover:scale-[1.02] hover:bg-white`}
               >
-                {item.isImage ? (
-                  <div className="w-full h-40 rounded-[1.5rem] bg-brand-lavender/40 flex items-center justify-center overflow-hidden mb-8 border border-brand-lavender/60 shadow-inner group-hover:scale-105 transition-transform duration-500">
-                    <img src={item.img} alt={item.title} className="w-full h-full object-cover" />
-                  </div>
-                ) : (
-                  <div className="w-16 h-16 rounded-[1.5rem] bg-gradient-to-br from-brand-lavender to-brand-lavender/40 flex items-center justify-center text-brand-text mb-8 shadow-premium transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
-                    {item.icon && <item.icon className="w-8 h-8" />}
-                  </div>
-                )}
+                <div className="w-16 h-16 rounded-[1.5rem] bg-gradient-to-br from-brand-lavender to-brand-lavender/40 flex items-center justify-center text-brand-text mb-8 shadow-premium transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                  {item.icon && <item.icon className="w-8 h-8" />}
+                </div>
                 <div className="">
                   <h3 className="text-xl font-bold text-brand-text mb-4 tracking-tight group-hover:text-brand-accent transition-colors">{item.title}</h3>
                   <p className="text-brand-text-muted leading-relaxed text-[16px] font-medium">{item.desc}</p>
