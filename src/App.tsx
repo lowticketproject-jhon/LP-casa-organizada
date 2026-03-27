@@ -262,7 +262,7 @@ export default function App() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl md:text-5xl lg:text-6xl font-black text-brand-text leading-[1.1] mb-4 max-w-5xl mx-auto text-balance tracking-tight"
           >
-           Veja em que semana da gravidez você está, como o bebé está se desenvolvendo e quais são os <span className="text-brand-accent">próximos passos importantes</span>.
+           Acompanhe sua gravidez semana a semana, veja como o bebé está crescendo e <span className="text-brand-accent">descubra o que vem a seguir em cada fase</span>.
           </motion.h1>
 
           {/* Mockup Principal */}
