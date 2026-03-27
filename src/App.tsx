@@ -303,20 +303,6 @@ export default function App() {
           >
             <Button primary className="text-lg px-12 py-5" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
 
-            {/* Reforços rápidos */}
-            <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mt-6">
-              {[
-                "Semana atual da gravidez",
-                "Desenvolvimento do bebê",
-                "Exames e consultas",
-                "Próximos passos importantes"
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-sm text-brand-text-muted font-bold">
-                  <CheckCircle2 className="w-4 h-4 text-brand-accent" />
-                  {item}
-                </div>
-              ))}
-            </div>
             {/* Microtexto */}
             <div className="flex items-center justify-center gap-4 mt-4 text-[11px] font-black uppercase tracking-widest text-brand-text-muted/60">
               <span>Acesso imediato</span>
@@ -342,7 +328,7 @@ export default function App() {
               <h2 className="text-2xl md:text-3xl font-black text-brand-text mb-6 leading-tight">
                 Em muitos momentos da gravidez, o mais difícil não é só lidar com as mudanças. É <span className="text-brand-accent">não saber exatamente</span> o que acompanhar em cada fase.
               </h2>
-              <div className="mb-8 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-md mx-auto">
+              <div className="mb-8 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-2xl mx-auto">
                 <img 
                   src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774575000/Gemini_Generated_Image_93jujr93jujr93ju-_1__q2axti.webp" 
                   alt="Acompanhamento da gravidez" 
