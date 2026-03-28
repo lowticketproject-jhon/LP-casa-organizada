@@ -119,109 +119,42 @@ const DecorativeBackground = () => (
 
 const SuccessView = () => {
   const [email] = useState(new URLSearchParams(window.location.search).get('email') || '');
-  const [password, setPassword] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
 
-  const handleRegister = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (password.length < 6) {
-      setError('A senha deve ter pelo menos 6 caracteres.');
-      return;
+  React.useEffect(() => {
+    const fbq = (window as any).fbq;
+    if (fbq) {
+      fbq('track', 'InitiateCheckout', {
+        value: 19.90,
+        currency: 'BRL',
+        content_name: 'Gravidez Organizada',
+        content_type: 'product',
+      });
+      fbq('track', 'Purchase', {
+        value: 19.90,
+        currency: 'BRL',
+        content_name: 'Gravidez Organizada',
+        content_type: 'product',
+      });
     }
-    setLoading(true);
-    setError(null);
-
-    const { data: signUpData, error: signUpError } = await supabase.auth.signUp({
-      email,
-      password,
-    });
-
-    if (signUpError) {
-      setError(signUpError.message);
-    } else if (signUpData?.user) {
-      // Update purchase_access to link the user and mark as used
-      await supabase
-        .from('purchase_access')
-        .update({ 
-          used: true, 
-          auth_user_id: signUpData.user.id 
-        })
-        .eq('email', email);
-        
-      setDone(true);
-    }
-    setLoading(false);
-  };
-
-  if (done) {
-    return (
-      <div className="min-h-screen bg-bg-off-white flex items-center justify-center p-6 relative">
-        <DecorativeBackground />
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="max-w-md w-full bg-white p-10 rounded-[2.5rem] shadow-premium border border-brand-lavender/40 text-center relative z-10"
-        >
-          <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600 shadow-premium">
-            <CheckCircle2 className="w-10 h-10" />
-          </div>
-          <h2 className="text-3xl font-black text-brand-text mb-4">Cadastro Criado!</h2>
-          <p className="text-brand-text-muted mb-8 font-medium">Sua conta está ativa. Clique abaixo para entrar no seu portal agora.</p>
-          <Button primary className="w-full text-lg py-5 shadow-brand-accent/40 shadow-premium" onClick={() => window.location.href = 'https://gravidezorganizada.online'}>ACESSAR MEU APLICATIVO</Button>
-        </motion.div>
-      </div>
-    );
-  }
+    setTimeout(() => {
+      window.location.href = `https://gravidezorganizada.online/cadastro?email=${encodeURIComponent(email)}`;
+    }, 3000);
+  }, [email]);
 
   return (
     <div className="min-h-screen bg-bg-off-white flex items-center justify-center p-6 relative">
       <DecorativeBackground />
       <motion.div 
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className="max-w-md w-full bg-white p-10 rounded-[2.5rem] shadow-premium border border-brand-lavender/40 relative z-10"
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        className="max-w-md w-full bg-white p-10 rounded-[2.5rem] shadow-premium border border-brand-lavender/40 text-center relative z-10"
       >
-        <div className="text-center mb-8">
-          <div className="inline-block px-4 py-2 bg-brand-lavender/30 rounded-full text-brand-accent text-xs font-black uppercase tracking-widest mb-4">
-            Compra Aprovada
-          </div>
-          <h2 className="text-3xl font-black text-brand-text mb-2 tracking-tight">Crie sua Senha</h2>
-          <p className="text-brand-text-muted font-medium">Falta só um passo para acessar seu portal.</p>
+        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600 shadow-premium">
+          <CheckCircle2 className="w-10 h-10" />
         </div>
-
-        <form onSubmit={handleRegister} className="space-y-5">
-          <div>
-            <label className="block text-xs font-black uppercase tracking-widest text-brand-text-muted mb-2 ml-4">E-mail</label>
-            <input 
-              type="email" 
-              value={email} 
-              disabled 
-              className="w-full px-6 py-4 rounded-2xl bg-bg-warm-gray/30 border border-brand-lavender/40 text-brand-text-muted font-medium focus:outline-none"
-            />
-          </div>
-          <div>
-            <label className="block text-xs font-black uppercase tracking-widest text-brand-text-muted mb-2 ml-4">Escolha uma Senha</label>
-            <input 
-              type="password" 
-              placeholder="Mínimo 6 caracteres"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              required
-              className="w-full px-6 py-4 rounded-2xl bg-white border border-brand-lavender/40 text-brand-text font-medium focus:ring-2 focus:ring-brand-accent/20 focus:border-brand-accent focus:outline-none transition-all"
-            />
-          </div>
-          
-          {error && (
-            <div className="p-4 bg-red-50 rounded-xl text-red-600 text-sm font-bold flex items-center gap-2">
-              <span className="w-1.5 h-1.5 rounded-full bg-red-600" />
-              {error}
-            </div>
-          )}
-
-          <Button primary loading={loading} className="w-full mt-4 py-5 text-base shadow-brand-accent/40 shadow-premium">Concluir Cadastro</Button>
-        </form>
+        <h2 className="text-3xl font-black text-brand-text mb-4">Compra Aprovada!</h2>
+        <p className="text-brand-text-muted mb-8 font-medium">Obrigado pela sua compra! Você será redirecionado para criar sua conta...</p>
+        <Button primary className="w-full text-lg py-5 shadow-brand-accent/40 shadow-premium" onClick={() => window.location.href = `https://gravidezorganizada.online/cadastro?email=${encodeURIComponent(email)}`}>CRIAR MINHA CONTA AGORA</Button>
       </motion.div>
     </div>
   );
@@ -552,7 +485,25 @@ export default function App() {
                 </div>
               </div>
 
-              <Button primary className="w-full text-base py-4 mb-4 shadow-brand-accent/40 bg-green-600 hover:bg-green-500 font-black" onClick={() => window.open('https://pay.cakto.com.br/koqudon_817260', '_blank')}>SIM! QUERO ACESSAR O GRAVIDEZ ORGANIZADA</Button>
+              <Button primary className="w-full text-base py-4 mb-4 shadow-brand-accent/40 bg-green-600 hover:bg-green-500 font-black" onClick={() => {
+                console.log('Botão clicado, tentando rastrear InitiateCheckout');
+                const fbq = (window as any).fbq;
+                if (fbq) {
+                  console.log('fbq encontrado, enviando evento');
+                  fbq('track', 'InitiateCheckout', {
+                    value: 19.90,
+                    currency: 'BRL',
+                    content_name: 'Gravidez Organizada',
+                    content_type: 'product',
+                  });
+                  setTimeout(() => {
+                    window.location.href = 'https://pay.cakto.com.br/koqudon_817260';
+                  }, 500);
+                } else {
+                  console.log('fbq NÃO encontrado');
+                  window.location.href = 'https://pay.cakto.com.br/koqudon_817260';
+                }
+              }}>SIM! QUERO ACESSAR O GRAVIDEZ ORGANIZADA</Button>
               
               <div className="flex flex-col gap-1 items-center text-[11px] text-brand-text-muted font-bold uppercase tracking-wider">
                 <div className="flex items-center gap-2">
