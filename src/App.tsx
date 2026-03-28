@@ -262,7 +262,7 @@ export default function App() {
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
             className="text-3xl md:text-5xl lg:text-6xl font-black text-brand-text leading-[1.1] mb-4 max-w-5xl mx-auto text-balance tracking-tight"
           >
-           Acompanhe sua gravidez semana a semana, veja como o bebé está crescendo e <span className="text-brand-accent">descubra o que vem a seguir em cada fase</span>.
+           Acompanhe sua gravidez semana a semana, veja como o bebê está crescendo e <span className="text-brand-accent">descubra o que vem a seguir em cada fase</span>.
           </motion.h1>
 
           {/* Mockup Principal */}
@@ -298,7 +298,7 @@ export default function App() {
           <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-6">
             {[
               "Semana atual da gravidez",
-              "Desenvolvimento do bebé",
+              "Desenvolvimento do bebê",
               "Exames e consultas",
               "Próximos passos importantes"
             ].map((item, i) => (
@@ -366,13 +366,13 @@ export default function App() {
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-5xl font-black text-white mb-4 text-balance tracking-tight">O que você acompanha no app</h2>
-            <p className="text-brand-lavender-dark max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">Tudo pensado para ajudar você a entender sua fase atual, acompanhar o desenvolvimento do bebé e visualizar o que merece sua atenção em cada momento da gravidez.</p>
+            <p className="text-brand-lavender-dark max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">Tudo pensado para ajudar você a entender sua fase atual, acompanhar o desenvolvimento do bebê e visualizar o que merece sua atenção em cada momento da gravidez.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {[
               { icon: Calendar, title: "Semana atual da gravidez", desc: "Saiba em que semana você está e acompanhe sua evolução com mais clareza." },
-              { icon: Baby, title: "Desenvolvimento do bebé", desc: "Veja o que está acontecendo com o bebé em cada etapa da gestação." },
+              { icon: Baby, title: "Desenvolvimento do bebê", desc: "Veja o que está acontecendo com o bebê em cada etapa da gestação." },
               { icon: Stethoscope, title: "Exames e consultas", desc: "Tenha mais organização para acompanhar o que merece sua atenção." },
               { icon: Compass, title: "Próximos passos importantes", desc: "Visualize o que observar agora e o que vem a seguir." },
               { icon: ClipboardList, title: "Checklists práticos", desc: "Tenha apoio para não deixar passar pontos importantes da gravidez." },
@@ -412,7 +412,7 @@ export default function App() {
         <DecorativeBackground />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="text-lg md:text-xl font-bold text-brand-text mb-3 text-balance">Tudo o que você precisa para acompanhar sua gravidez com mais clareza em um só lugar</h2>
-          <p className="text-brand-text-muted text-base leading-relaxed font-medium">Por um valor único, você acessa um app prático para entender sua fase atual, acompanhar o desenvolvimento do bebé, visualizar os próximos passos importantes e viver sua jornada com mais organização e tranquilidade.</p>
+          <p className="text-brand-text-muted text-base leading-relaxed font-medium">Por um valor único, você acessa um app prático para entender sua fase atual, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e viver sua jornada com mais organização e tranquilidade.</p>
           <div className="mt-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-lg mx-auto">
             <img 
               src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774579194/Gemini_Generated_Image_6ljw1j6ljw1j6ljw-removebg-preview_dtdmah.webp" 
@@ -508,7 +508,7 @@ export default function App() {
                 {[
                   "Acesso ao app Gravidez Organizada",
                   "Semana atual da gestação",
-                  "Desenvolvimento do bebé",
+                  "Desenvolvimento do bebê",
                   "Exames e consultas",
                   "Próximos passos importantes",
                   "Checklists práticos",
@@ -629,7 +629,7 @@ export default function App() {
         <DecorativeBackground />
         <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-2xl md:text-4xl font-black text-brand-text mb-3 leading-[1.1] font-display text-balance tracking-tight">Tenha sua gravidez <span className="text-brand-accent">mais clara, organizada e acompanhada</span> em um só lugar</h2>
-          <p className="text-base md:text-lg text-brand-text-muted mb-6 max-w-3xl mx-auto font-medium">Se você quer entender melhor cada etapa da gravidez, acompanhar o desenvolvimento do bebé, visualizar os próximos passos importantes e registrar momentos especiais da sua gravidez, o Gravidez Organizada foi feito para isso.</p>
+          <p className="text-base md:text-lg text-brand-text-muted mb-6 max-w-3xl mx-auto font-medium">Se você quer entender melhor cada etapa da gravidez, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e registrar momentos especiais da sua gravidez, o Gravidez Organizada foi feito para isso.</p>
           <Button primary className="text-lg py-4 px-10 shadow-brand-accent/40" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
           
           <div className="mt-6 flex justify-center items-center gap-8 opacity-50 grayscale font-bold text-[12px] uppercase tracking-widest">
