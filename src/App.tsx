@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useState, useMemo } from 'react';
 import { 
   CheckCircle2, 
   ChevronDown, 
@@ -27,7 +27,25 @@ import {
   MapPin
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
-import { supabase } from './lib/supabase';
+import './index.css';
+
+const CHECKOUT_URL = 'https://pay.cakto.com.br/koqudon_817260';
+
+const getCheckoutUrl = () => {
+  const params = new URLSearchParams(window.location.search);
+  const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+  const filteredParams = new URLSearchParams();
+  
+  trackingParams.forEach(param => {
+    const value = params.get(param);
+    if (value) {
+      filteredParams.set(param, value);
+    }
+  });
+  
+  const queryString = filteredParams.toString();
+  return queryString ? `${CHECKOUT_URL}?${queryString}` : CHECKOUT_URL;
+};
 
 // --- Components ---
 
@@ -123,12 +141,6 @@ const SuccessView = () => {
   React.useEffect(() => {
     const fbq = (window as any).fbq;
     if (fbq) {
-      fbq('track', 'InitiateCheckout', {
-        value: 19.90,
-        currency: 'BRL',
-        content_name: 'Gravidez Organizada',
-        content_type: 'product',
-      });
       fbq('track', 'Purchase', {
         value: 19.90,
         currency: 'BRL',
@@ -136,8 +148,11 @@ const SuccessView = () => {
         content_type: 'product',
       });
     }
+    const appUrl = email 
+      ? `https://gravidezorganizada.online/cadastro?email=${encodeURIComponent(email)}`
+      : 'https://gravidezorganizada.online';
     setTimeout(() => {
-      window.location.href = `https://gravidezorganizada.online/cadastro?email=${encodeURIComponent(email)}`;
+      window.location.href = appUrl;
     }, 3000);
   }, [email]);
 
@@ -153,8 +168,14 @@ const SuccessView = () => {
           <CheckCircle2 className="w-10 h-10" />
         </div>
         <h2 className="text-3xl font-black text-brand-text mb-4">Compra Aprovada!</h2>
-        <p className="text-brand-text-muted mb-8 font-medium">Obrigado pela sua compra! Você será redirecionado para criar sua conta...</p>
-        <Button primary className="w-full text-lg py-5 shadow-brand-accent/40 shadow-premium" onClick={() => window.location.href = `https://gravidezorganizada.online/cadastro?email=${encodeURIComponent(email)}`}>CRIAR MINHA CONTA AGORA</Button>
+        <p className="text-brand-text-muted mb-4 font-medium">Obrigado pela sua compra! Você será redirecionado para acessar o aplicativo...</p>
+        <p className="text-brand-text-muted mb-8 text-sm">Após a compra, você receberá as instruções para acessar o aplicativo no celular e fazer seu primeiro acesso.</p>
+        <Button primary className="w-full text-lg py-5 shadow-brand-accent/40 shadow-premium" onClick={() => {
+          const appUrl = email 
+            ? `https://gravidezorganizada.online/cadastro?email=${encodeURIComponent(email)}`
+            : 'https://gravidezorganizada.online';
+          window.location.href = appUrl;
+        }}>ACESSAR O APLICATIVO</Button>
       </motion.div>
     </div>
   );
@@ -249,7 +270,15 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center"
           >
-            <Button primary className="text-lg px-12 py-5" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
+            <Button primary className="text-lg px-12 py-5" onClick={() => {
+              const fbq = (window as any).fbq;
+              if (fbq) {
+                fbq('track', 'Lead', {
+                  content_name: 'Gravidez Organizada',
+                });
+              }
+              window.location.href = getCheckoutUrl();
+            }}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
 
             {/* Microtexto */}
             <div className="flex items-center justify-center gap-4 mt-4 text-[11px] font-black uppercase tracking-widest text-brand-text-muted/60">
@@ -288,7 +317,15 @@ export default function App() {
                   O Gravidez Organizada foi criado para reunir em um só lugar o que ajuda você a entender melhor o momento atual da gravidez, acompanhar os próximos passos e viver essa fase com mais clareza e tranquilidade.
                 </p>
               </div>
-              <Button primary onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
+              <Button primary onClick={() => {
+              const fbq = (window as any).fbq;
+              if (fbq) {
+                fbq('track', 'Lead', {
+                  content_name: 'Gravidez Organizada',
+                });
+              }
+              window.location.href = getCheckoutUrl();
+            }}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
             </motion.div>
           </div>
         </section>
@@ -333,7 +370,15 @@ export default function App() {
           </div>
           
           <div className="text-center mt-8">
-            <button onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })} className="px-8 py-4 rounded-full font-bold bg-white text-brand-text shadow-lg hover:bg-brand-lavender transition-all duration-300">
+            <button onClick={() => {
+              const fbq = (window as any).fbq;
+              if (fbq) {
+                fbq('track', 'Lead', {
+                  content_name: 'Gravidez Organizada',
+                });
+              }
+              window.location.href = getCheckoutUrl();
+            }} className="px-8 py-4 rounded-full font-bold bg-white text-brand-text shadow-lg hover:bg-brand-lavender transition-all duration-300">
               QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA
             </button>
           </div>
@@ -486,23 +531,16 @@ export default function App() {
               </div>
 
               <Button primary className="w-full text-base py-4 mb-4 shadow-brand-accent/40 bg-green-600 hover:bg-green-500 font-black" onClick={() => {
-                console.log('Botão clicado, tentando rastrear InitiateCheckout');
                 const fbq = (window as any).fbq;
                 if (fbq) {
-                  console.log('fbq encontrado, enviando evento');
                   fbq('track', 'InitiateCheckout', {
                     value: 19.90,
                     currency: 'BRL',
                     content_name: 'Gravidez Organizada',
                     content_type: 'product',
                   });
-                  setTimeout(() => {
-                    window.location.href = 'https://pay.cakto.com.br/koqudon_817260';
-                  }, 500);
-                } else {
-                  console.log('fbq NÃO encontrado');
-                  window.location.href = 'https://pay.cakto.com.br/koqudon_817260';
                 }
+                window.location.href = getCheckoutUrl();
               }}>SIM! QUERO ACESSAR O GRAVIDEZ ORGANIZADA</Button>
               
               <div className="flex flex-col gap-1 items-center text-[11px] text-brand-text-muted font-bold uppercase tracking-wider">
@@ -548,6 +586,14 @@ export default function App() {
           
           <div className="glass bg-brand-lavender rounded-[2.5rem] p-6 md:p-8 shadow-premium border border-brand-lavender/60">
             <FAQItem 
+              question="Como recebo o acesso?" 
+              answer="Após a compra, você receberá as instruções para acessar o aplicativo no celular e fazer seu primeiro acesso." 
+            />
+            <FAQItem 
+              question="Preciso baixar o aplicativo?" 
+              answer="O Gravidez Organizada funciona como app web e pode ser acessado diretamente no celular." 
+            />
+            <FAQItem 
               question="Funciona em qualquer celular?" 
               answer="Sim. O acesso foi pensado para ser simples e prático no celular." 
             />
@@ -581,7 +627,15 @@ export default function App() {
         <div className="max-w-5xl mx-auto relative z-10">
           <h2 className="text-2xl md:text-4xl font-black text-brand-text mb-3 leading-[1.1] font-display text-balance tracking-tight">Tenha sua gravidez <span className="text-brand-accent">mais clara, organizada e acompanhada</span> em um só lugar</h2>
           <p className="text-base md:text-lg text-brand-text-muted mb-6 max-w-3xl mx-auto font-medium">Se você quer entender melhor cada etapa da gravidez, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e registrar momentos especiais da sua gravidez, o Gravidez Organizada foi feito para isso.</p>
-          <Button primary className="text-lg py-4 px-10 shadow-brand-accent/40" onClick={() => document.getElementById('preco')?.scrollIntoView({ behavior: 'smooth' })}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
+          <Button primary className="text-lg py-4 px-10 shadow-brand-accent/40" onClick={() => {
+              const fbq = (window as any).fbq;
+              if (fbq) {
+                fbq('track', 'Lead', {
+                  content_name: 'Gravidez Organizada',
+                });
+              }
+              window.location.href = getCheckoutUrl();
+            }}>QUERO ACOMPANHAR MINHA GRAVIDEZ AGORA</Button>
           
           <div className="mt-6 flex justify-center items-center gap-8 opacity-50 grayscale font-bold text-[12px] uppercase tracking-widest">
              <div className="flex items-center gap-2">
