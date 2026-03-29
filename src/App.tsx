@@ -24,7 +24,8 @@ import {
   Leaf,
   Calendar,
   Compass,
-  MapPin
+  MapPin,
+  Phone
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import './index.css';
@@ -653,6 +654,17 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* WhatsApp Float Button */}
+      <a
+        href="https://wa.me/5531992440099?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20Gravidez%20Organizada"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
+        aria-label="Fale conosco pelo WhatsApp"
+      >
+        <Phone className="w-7 h-7 text-white fill-white rotate-[135deg]" />
+      </a>
 
       {/* Footer */}
       <footer className="py-6 px-6 bg-white border-t border-brand-lavender/40 text-center relative">
