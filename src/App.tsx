@@ -246,7 +246,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
             className="text-lg md:text-xl text-brand-text-muted mb-6 max-w-3xl mx-auto leading-relaxed font-medium"
           >
-            Um app prático para ajudar você a entender o momento atual da gravidez, organizar exames e consultas, visualizar os próximos passos e registrar momentos especiais da sua gravidez.
+            Uma plataforma prática para ajudar você a entender o momento atual da gravidez, organizar exames e consultas, visualizar os próximos passos e registrar momentos especiais da sua gravidez.
           </motion.p>
 
           {/* Bullets */}
@@ -336,7 +336,7 @@ export default function App() {
         <DecorativeBackground />
         <div className="max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 text-balance tracking-tight">O que você acompanha no app</h2>
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 text-balance tracking-tight">O que você acompanha na plataforma</h2>
             <p className="text-brand-lavender-dark max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">Tudo pensado para ajudar você a entender sua fase atual, acompanhar o desenvolvimento do bebê e visualizar o que merece sua atenção em cada momento da gravidez.</p>
           </div>
           
@@ -349,7 +349,7 @@ export default function App() {
               { icon: ClipboardList, title: "Checklists práticos", desc: "Tenha apoio para não deixar passar pontos importantes da gravidez." },
               { icon: Clock, title: "Linha do tempo da gravidez", desc: "Acompanhe sua evolução de forma simples e visual." },
               { icon: Zap, title: "Dicas úteis para o dia a dia da gestação", desc: "Acesse conteúdos de apoio com orientações práticas para a rotina." },
-              { icon: Heart, title: "Registro de momentos e experiências", desc: "Guarde momentos especiais da sua jornada e acompanhe relatos dentro do app." }
+              { icon: Heart, title: "Registro de momentos e experiências", desc: "Guarde momentos especiais da sua jornada e acompanhe relatos dentro da plataforma." }
             ].map((item, i) => (
               <motion.div 
                 key={i} 
@@ -391,7 +391,7 @@ export default function App() {
         <DecorativeBackground />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="text-lg md:text-xl font-bold text-brand-text mb-3 text-balance">Tudo o que você precisa para acompanhar sua gravidez com mais clareza em um só lugar</h2>
-          <p className="text-brand-text-muted text-base leading-relaxed font-medium">Por um valor único, você acessa um app prático para entender sua fase atual, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e viver sua jornada com mais organização e tranquilidade.</p>
+          <p className="text-brand-text-muted text-base leading-relaxed font-medium">Por um valor único, você acessa uma plataforma prática para entender sua fase atual, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e viver sua jornada com mais organização e tranquilidade.</p>
           <div className="mt-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-lg mx-auto">
             <img 
               src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774579194/Gemini_Generated_Image_6ljw1j6ljw1j6ljw-removebg-preview_dtdmah.webp" 
@@ -435,7 +435,7 @@ export default function App() {
         <DecorativeBackground />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <p className="text-brand-text-muted text-lg leading-relaxed font-medium">
-            Se esta é sua primeira gravidez, o app ajuda você a entender melhor cada etapa com mais clareza e menos insegurança. Se você já é mãe, ele ajuda a acompanhar tudo com mais praticidade e menos carga mental na rotina.
+            Se esta é sua primeira gravidez, a plataforma ajuda você a entender melhor cada etapa com mais clareza e menos insegurança. Se você já é mãe, ele ajuda a acompanhar tudo com mais praticidade e menos carga mental na rotina.
           </p>
         </div>
       </section>
@@ -485,7 +485,7 @@ export default function App() {
               <h3 className="text-xl font-bold text-white mb-4 font-display">Ao comprar hoje, você recebe:</h3>
               <ul className="space-y-2">
                 {[
-                  "Acesso ao app Gravidez Organizada",
+                  "Acesso à plataforma Gravidez Organizada",
                   "Semana atual da gestação",
                   "Desenvolvimento do bebê",
                   "Exames e consultas",
@@ -494,7 +494,7 @@ export default function App() {
                   "Linha do tempo da gravidez",
                   "Dicas úteis de apoio para a gestação",
                   "Espaço para registrar momentos especiais",
-                  "Área de experiências e relatos dentro do app"
+                  "Área de experiências e relatos dentro da plataforma"
                 ].map((item, i) => (
                   <li key={i} className="flex items-start gap-2 text-[13px] font-bold text-white">
                     <CheckCircle2 className="w-4 h-4 text-white mt-0.5 shrink-0" />
@@ -570,7 +570,7 @@ export default function App() {
             <div className="text-center md:text-left">
               <h3 className="text-lg md:text-xl font-bold text-brand-text mb-3 font-display">Você tem 7 dias de garantia para conhecer o Gravidez Organizada com tranquilidade</h3>
               <p className="text-brand-text-muted text-[15px] leading-relaxed font-medium">
-                Entre, explore o app e veja se ele faz sentido para este momento da sua gravidez. Se dentro de 7 dias você entender que o Gravidez Organizada não é para você, poderá solicitar o cancelamento conforme as condições informadas.
+                Entre, explore a plataforma e veja se ela faz sentido para este momento da sua gravidez. Se dentro de 7 dias você entender que o Gravidez Organizada não é para você, poderá solicitar o cancelamento conforme as condições informadas.
               </p>
             </div>
           </div>
@@ -592,7 +592,7 @@ export default function App() {
             />
             <FAQItem 
               question="Preciso baixar o aplicativo?" 
-              answer="O Gravidez Organizada funciona como app web e pode ser acessado diretamente no celular." 
+              answer="O Gravidez Organizada funciona como plataforma web e pode ser acessado diretamente no celular." 
             />
             <FAQItem 
               question="Funciona em qualquer celular?" 
@@ -600,7 +600,7 @@ export default function App() {
             />
             <FAQItem 
               question="Posso usar mesmo se já estiver com vários meses?" 
-              answer="Sim. O app ajuda você a acompanhar a fase atual da sua gravidez e o que vem a seguir." 
+              answer="Sim. A plataforma ajuda você a acompanhar a fase atual da sua gravidez e o que vem a seguir." 
             />
             <FAQItem 
               question="Serve para quem acabou de descobrir a gravidez?" 
