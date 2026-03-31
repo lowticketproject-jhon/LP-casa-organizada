@@ -391,7 +391,7 @@ export default function App() {
         <DecorativeBackground />
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="text-lg md:text-xl font-bold text-brand-text mb-3 text-balance">Tudo o que você precisa para acompanhar sua gravidez com mais clareza em um só lugar</h2>
-          <p className="text-brand-text-muted text-base leading-relaxed font-medium">Por um valor único, você acessa uma plataforma prática para entender sua fase atual, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e viver sua jornada com mais organização e tranquilidade.</p>
+          <p className="text-brand-text-muted text-base leading-relaxed font-medium">Você acessa uma plataforma prática para entender sua fase atual, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e viver sua jornada com mais organização e tranquilidade.</p>
           <div className="mt-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-lg mx-auto">
             <img 
               src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774579194/Gemini_Generated_Image_6ljw1j6ljw1j6ljw-removebg-preview_dtdmah.webp" 
