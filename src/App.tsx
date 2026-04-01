@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useMemo } from 'react';
+import React, { useState } from 'react';
 import { 
   CheckCircle2, 
   ChevronDown, 
@@ -32,9 +32,12 @@ import './index.css';
 
 const CHECKOUT_URL = 'https://pay.cakto.com.br/koqudon_817260';
 
-const getCheckoutUrl = () => {
+const getUrlParams = () => {
   const params = new URLSearchParams(window.location.search);
-  const trackingParams = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'fbclid'];
+  const trackingParams = [
+    'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 
+    'fbclid', 'gclid', 'ttclid', 'utm_id', 'utm_source_platform', 'utm_creative_format', 'utm_marketing_tactic'
+  ];
   const filteredParams = new URLSearchParams();
   
   trackingParams.forEach(param => {
@@ -44,8 +47,32 @@ const getCheckoutUrl = () => {
     }
   });
   
+  return filteredParams;
+};
+
+const getCheckoutUrl = () => {
+  const filteredParams = getUrlParams();
   const queryString = filteredParams.toString();
   return queryString ? `${CHECKOUT_URL}?${queryString}` : CHECKOUT_URL;
+};
+
+const trackEvent = (eventName: string, additionalData?: Record<string, any>) => {
+  const fbq = (window as any).fbq;
+  if (fbq) {
+    const utmParams = getUrlParams();
+    const trackingData: Record<string, any> = {
+      content_name: 'Gravidez Organizada',
+      content_type: 'product',
+      ...Object.fromEntries(utmParams),
+      ...additionalData
+    };
+    fbq('track', eventName, trackingData);
+  }
+  
+  // Pixel Cakto
+  if ((window as any).cakto) {
+    (window as any).cakto('track', eventName);
+  }
 };
 
 // --- Components ---
@@ -271,15 +298,10 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center"
           >
-            <Button primary className="text-base md:text-lg px-8 md:px-12 py-3 md:py-5" onClick={() => {
-              const fbq = (window as any).fbq;
-              if (fbq) {
-                fbq('track', 'Lead', {
-                  content_name: 'Gravidez Organizada',
-                });
-              }
+<Button primary className="text-base md:text-lg px-8 md:px-12 py-3 md:py-5" onClick={() => {
+              trackEvent('Lead', { value: 19.90, currency: 'BRL' });
               window.location.href = getCheckoutUrl();
-                        }}>QUERO ACOMPANHAR MINHA GRAVIDEZ COM MAIS CLAREZA</Button>
+            }}>QUERO ACOMPANHAR MINHA GRAVIDEZ COM MAIS CLAREZA</Button>
 
             {/* Microtexto */}
             <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 mt-4 text-[11px] font-black uppercase tracking-widest text-brand-text-muted/60">
@@ -319,12 +341,7 @@ export default function App() {
                 </p>
               </div>
               <Button primary onClick={() => {
-              const fbq = (window as any).fbq;
-              if (fbq) {
-                fbq('track', 'Lead', {
-                  content_name: 'Gravidez Organizada',
-                });
-              }
+              trackEvent('Lead', { value: 19.90, currency: 'BRL' });
               window.location.href = getCheckoutUrl();
             }}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
             </motion.div>
@@ -372,12 +389,7 @@ export default function App() {
           
           <div className="text-center mt-8">
             <button onClick={() => {
-              const fbq = (window as any).fbq;
-              if (fbq) {
-                fbq('track', 'Lead', {
-                  content_name: 'Gravidez Organizada',
-                });
-              }
+              trackEvent('Lead', { value: 19.90, currency: 'BRL' });
               window.location.href = getCheckoutUrl();
             }} className="px-8 py-4 rounded-full font-bold bg-white text-brand-text shadow-lg hover:bg-brand-lavender transition-all duration-300">
               QUERO ACESSAR AGORA
@@ -538,15 +550,7 @@ export default function App() {
               </div>
 
               <Button primary className="w-full text-base py-4 mb-4 shadow-brand-accent/40 bg-green-600 hover:bg-green-500 font-black" onClick={() => {
-                const fbq = (window as any).fbq;
-                if (fbq) {
-                  fbq('track', 'InitiateCheckout', {
-                    value: 19.90,
-                    currency: 'BRL',
-                    content_name: 'Gravidez Organizada',
-                    content_type: 'product',
-                  });
-                }
+                trackEvent('InitiateCheckout', { value: 19.90, currency: 'BRL' });
                 window.location.href = getCheckoutUrl();
               }}>QUERO ACESSAR AGORA</Button>
               
@@ -635,12 +639,7 @@ export default function App() {
           <h2 className="text-2xl md:text-4xl font-black text-brand-text mb-3 leading-[1.1] font-display text-balance tracking-tight">Tenha sua gravidez <span className="text-brand-accent">mais clara, organizada e acompanhada</span> em um só lugar</h2>
           <p className="text-base md:text-lg text-brand-text-muted mb-6 max-w-3xl mx-auto font-medium">Se você quer entender melhor cada etapa da gravidez, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e registrar momentos especiais da sua gravidez, o Gravidez Organizada foi feito para isso.</p>
           <Button primary className="text-lg py-4 px-10 shadow-brand-accent/40" onClick={() => {
-              const fbq = (window as any).fbq;
-              if (fbq) {
-                fbq('track', 'Lead', {
-                  content_name: 'Gravidez Organizada',
-                });
-              }
+              trackEvent('Lead', { value: 19.90, currency: 'BRL' });
               window.location.href = getCheckoutUrl();
             }}>QUERO ACESSAR AGORA</Button>
           
