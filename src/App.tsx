@@ -242,7 +242,7 @@ export default function App() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-3xl md:text-5xl lg:text-6xl font-black text-brand-text leading-[1.1] mb-4 max-w-5xl mx-auto text-balance tracking-tight"
+            className="text-2xl md:text-5xl lg:text-6xl font-black text-brand-text leading-[1.1] mb-4 max-w-5xl mx-auto text-balance tracking-tight px-4 md:px-0"
           >
            Veja em que fase da gravidez você está, entenda o desenvolvimento do bebê e saiba os próximos passos importantes em um só lugar.
           </motion.h1>
@@ -252,12 +252,12 @@ export default function App() {
             initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative max-w-4xl mx-auto mb-8"
+            className="relative max-w-4xl mx-auto mb-6 md:mb-8 px-4 md:px-0"
           >
-            <div className="relative z-10 rounded-[2rem] overflow-hidden">
+            <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-lg">
               <img 
                 src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774495739/1774438917689-removebg-preview_lenqun.png" 
-                alt="Gravidez Organizada App" 
+                alt="Gravidez Organizada" 
                 className="w-full h-auto"
               />
             </div>
@@ -271,7 +271,7 @@ export default function App() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-lg md:text-xl text-brand-text-muted mb-6 max-w-3xl mx-auto leading-relaxed font-medium"
+            className="text-lg md:text-xl text-brand-text-muted mb-6 max-w-3xl mx-auto leading-relaxed font-medium px-4 md:px-0"
           >
             Uma plataforma prática para ajudar você a acompanhar sua gravidez com mais clareza, organizar exames e consultas e se sentir menos perdida em cada fase.
           </motion.p>
@@ -328,7 +328,7 @@ export default function App() {
               <h2 className="text-2xl md:text-3xl font-black text-brand-text mb-4 leading-tight">
                 Entre sintomas, exames, consultas e tantas informações espalhadas, muitas gestantes acabam se sentindo perdidas sem saber exatamente o que merece atenção em cada fase.
               </h2>
-              <div className="mb-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-lg mx-auto">
+              <div className="mb-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-lg mx-auto px-4 md:px-0">
                 <img 
                   src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774575000/Gemini_Generated_Image_93jujr93jujr93ju-_1__q2axti.webp" 
                   alt="Acompanhamento da gravidez" 
@@ -404,10 +404,10 @@ export default function App() {
         <div className="max-w-3xl mx-auto text-center relative z-10">
           <h2 className="text-lg md:text-xl font-bold text-brand-text mb-3 text-balance">Tudo o que você precisa para acompanhar sua gravidez com mais clareza em um só lugar</h2>
           <p className="text-brand-text-muted text-base leading-relaxed font-medium">Você acessa uma plataforma prática para entender sua fase atual, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e viver sua jornada com mais organização e tranquilidade.</p>
-          <div className="mt-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-lg mx-auto">
+          <div className="mt-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-lg mx-auto px-4 md:px-0">
             <img 
               src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774579194/Gemini_Generated_Image_6ljw1j6ljw1j6ljw-removebg-preview_dtdmah.webp" 
-              alt="Gravidez Organizada App" 
+              alt="Gravidez Organizada" 
               className="w-full h-auto"
             />
           </div>
