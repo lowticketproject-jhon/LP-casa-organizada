@@ -271,7 +271,7 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="flex flex-col items-center"
           >
-            <Button primary className="text-lg px-12 py-5" onClick={() => {
+            <Button primary className="text-base md:text-lg px-8 md:px-12 py-3 md:py-5" onClick={() => {
               const fbq = (window as any).fbq;
               if (fbq) {
                 fbq('track', 'Lead', {
@@ -282,10 +282,10 @@ export default function App() {
                         }}>QUERO ACOMPANHAR MINHA GRAVIDEZ COM MAIS CLAREZA</Button>
 
             {/* Microtexto */}
-            <div className="flex items-center justify-center gap-4 mt-4 text-[11px] font-black uppercase tracking-widest text-brand-text-muted/60">
-              <span>Acesso imediato</span>
+            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 mt-4 text-[11px] font-black uppercase tracking-widest text-brand-text-muted/60">
+              <span className="whitespace-nowrap">Acesso imediato</span>
               <span className="w-1 h-1 rounded-full bg-brand-lavender-dark" />
-              <span>Funciona no celular</span>
+              <span className="whitespace-nowrap">Funciona no celular</span>
               <span className="w-1 h-1 rounded-full bg-brand-lavender-dark" />
               <span>Pagamento único</span>
             </div>
@@ -531,9 +531,9 @@ export default function App() {
                   <span className="text-5xl font-black text-brand-text font-display">R$ 19,90</span>
                 </div>
                 <div className="flex items-center justify-center gap-4 mt-3 text-[11px] font-bold uppercase tracking-widest text-brand-accent">
-                  <span>Pagamento único</span>
+<span className="whitespace-nowrap">Pagamento único</span>
                   <span className="w-1 h-1 rounded-full bg-brand-accent" />
-                  <span>Acesso imediato</span>
+                  <span className="whitespace-nowrap">Acesso imediato</span>
                 </div>
               </div>
 
