@@ -1,13 +1,7 @@
-/**
- * @license
- * SPDX-License-Identifier: Apache-2.0
- */
-
 import React, { useState } from 'react';
 import { 
   CheckCircle2, 
   ChevronDown, 
-  ChevronUp, 
   Baby, 
   ClipboardList, 
   Smartphone, 
@@ -15,17 +9,17 @@ import {
   Zap, 
   Heart, 
   Clock, 
-  LayoutDashboard,
   Stethoscope,
   ShoppingBag,
   MessageCircleQuestion,
-  Star,
-  Moon,
-  Leaf,
   Calendar,
   Compass,
-  MapPin,
-  Phone
+  Eye,
+  Brain,
+  AlertCircle,
+  ArrowRight,
+  Check,
+  Star
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import './index.css';
@@ -36,7 +30,7 @@ const getUrlParams = () => {
   const params = new URLSearchParams(window.location.search);
   const trackingParams = [
     'utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 
-    'fbclid', 'gclid', 'ttclid', 'utm_id', 'utm_source_platform', 'utm_creative_format', 'utm_marketing_tactic'
+    'fbclid', 'gclid', 'ttclid', 'utm_id'
   ];
   const filteredParams = new URLSearchParams();
   
@@ -69,68 +63,44 @@ const trackEvent = (eventName: string, additionalData?: Record<string, any>) => 
     fbq('track', eventName, trackingData);
   }
   
-  // Pixel Cakto
   if ((window as any).cakto) {
     (window as any).cakto('track', eventName);
   }
 };
 
-// --- Components ---
-
 interface ButtonProps {
   children: React.ReactNode;
   className?: string;
-  primary?: boolean;
-  key?: React.Key;
   onClick?: () => void;
+  variant?: 'primary' | 'secondary';
 }
 
-const Button = ({ children, className = "", primary = false, onClick, disabled = false, loading = false }: ButtonProps & { disabled?: boolean, loading?: boolean }) => (
+const Button = ({ children, className = "", onClick, variant = 'primary' }: ButtonProps) => (
   <button 
     onClick={onClick}
-    disabled={disabled || loading}
     className={`
       px-8 py-4 rounded-full font-bold transition-all duration-300 transform 
-      active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed
-      ${primary 
-        ? "bg-brand-accent text-white hover:bg-brand-accent-light shadow-brand-accent/25 btn-pulse" 
-        : "glass text-brand-text border border-brand-lavender-dark hover:bg-brand-lavender/80 shadow-card"}
+      active:scale-95 text-base md:text-lg
+      ${variant === 'primary' 
+        ? "bg-[#00A63E] text-white hover:bg-[#009632] shadow-lg hover:shadow-xl" 
+        : "bg-[#8B5CF6] text-white hover:bg-[#7C3AED] shadow-lg hover:shadow-xl"}
       ${className}
     `}
   >
-    {loading ? (
-      <div className="flex items-center justify-center gap-2">
-        <div className="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
-        <span>Processando...</span>
-      </div>
-    ) : children}
-  </button>
-);
-
-interface CardProps {
-  children: React.ReactNode;
-  className?: string;
-  key?: React.Key;
-}
-
-const Card = ({ children, className = "" }: CardProps) => (
-  <div className={`glass p-8 rounded-[2.5rem] shadow-premium border border-brand-lavender/60 transition-all duration-300 hover:shadow-premium hover:border-brand-accent/30 ${className}`}>
     {children}
-  </div>
+  </button>
 );
 
 const FAQItem = ({ question, answer }: { question: string, answer: string }) => {
   const [isOpen, setIsOpen] = useState(false);
   return (
-    <div className="border-b border-brand-lavender/40 last:border-0">
+    <div className="border-b border-[#8B5CF6]/20 last:border-0">
       <button 
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full py-6 flex justify-between items-center text-left focus:outline-none group"
+        className="w-full py-5 flex justify-between items-center text-left"
       >
-        <span className={`text-lg font-bold transition-colors duration-300 ${isOpen ? 'text-brand-accent' : 'text-brand-text group-hover:text-brand-accent-light'}`}>{question}</span>
-        <div className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-300 ${isOpen ? 'bg-brand-accent text-white rotate-180 shadow-premium' : 'bg-brand-lavender/50 text-brand-accent'}`}>
-          <ChevronDown className="w-5 h-5" />
-        </div>
+        <span className={`text-base font-semibold pr-4 ${isOpen ? 'text-[#8B5CF6]' : 'text-brand-text'}`}>{question}</span>
+        <ChevronDown className={`w-5 h-5 text-[#8B5CF6] transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
       <AnimatePresence>
         {isOpen && (
@@ -138,10 +108,10 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.04, 0.62, 0.23, 0.98] }}
+            transition={{ duration: 0.3 }}
             className="overflow-hidden"
           >
-            <p className="pb-8 text-brand-text-muted leading-relaxed text-[15px] font-medium">{answer}</p>
+            <p className="pb-5 text-brand-text-muted">{answer}</p>
           </motion.div>
         )}
       </AnimatePresence>
@@ -149,544 +119,522 @@ const FAQItem = ({ question, answer }: { question: string, answer: string }) => 
   );
 };
 
-// --- Decorative Background ---
-const DecorativeBackground = () => (
-  <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
-    <Heart className="decorative-icon top-[10%] left-[5%] w-14 h-14 rotate-12 opacity-[0.03]" />
-    <Star className="decorative-icon top-[15%] right-[10%] w-12 h-12 -rotate-12 opacity-[0.03]" />
-    <Baby className="decorative-icon top-[40%] left-[8%] w-16 h-16 rotate-6 opacity-[0.04]" />
-    <Moon className="decorative-icon top-[60%] right-[12%] w-14 h-14 -rotate-6 opacity-[0.03]" />
-    <Leaf className="decorative-icon top-[80%] left-[15%] w-14 h-14 rotate-45 opacity-[0.04]" />
-    <Calendar className="decorative-icon top-[25%] right-[20%] w-12 h-12 opacity-[0.02]" />
-    <div className="absolute top-[20%] right-[30%] w-64 h-64 bg-brand-accent/5 rounded-full blur-[80px]" />
-    <div className="absolute bottom-[20%] left-[20%] w-80 h-80 bg-brand-accent/5 rounded-full blur-[100px]" />
-  </div>
+const SectionTitle = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
+  <h2 className={`text-2xl md:text-4xl font-black text-brand-text leading-tight text-center mb-4 ${className}`}>
+    {children}
+  </h2>
 );
 
-const SuccessView = () => {
-  const [email] = useState(new URLSearchParams(window.location.search).get('email') || '');
-
-  React.useEffect(() => {
-    const fbq = (window as any).fbq;
-    if (fbq) {
-      fbq('track', 'Purchase', {
-        value: 19.90,
-        currency: 'BRL',
-        content_name: 'Gravidez Organizada',
-        content_type: 'product',
-      });
-    }
-    const appUrl = email 
-      ? `https://gravidezorganizada.online/cadastro?email=${encodeURIComponent(email)}`
-      : 'https://gravidezorganizada.online';
-    setTimeout(() => {
-      window.location.href = appUrl;
-    }, 3000);
-  }, [email]);
-
-  return (
-    <div className="min-h-screen bg-bg-off-white flex items-center justify-center p-6 relative">
-      <DecorativeBackground />
-      <motion.div 
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="max-w-md w-full bg-white p-10 rounded-[2.5rem] shadow-premium border border-brand-lavender/40 text-center relative z-10"
-      >
-        <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6 text-green-600 shadow-premium">
-          <CheckCircle2 className="w-10 h-10" />
-        </div>
-        <h2 className="text-3xl font-black text-brand-text mb-4">Compra Aprovada!</h2>
-        <p className="text-brand-text-muted mb-4 font-medium">Obrigado pela sua compra! Você será redirecionado para acessar o aplicativo...</p>
-        <p className="text-brand-text-muted mb-8 text-sm">Após a compra, você receberá as instruções para acessar o aplicativo no celular e fazer seu primeiro acesso.</p>
-        <Button primary className="w-full text-lg py-5 shadow-brand-accent/40 shadow-premium" onClick={() => {
-          const appUrl = email 
-            ? `https://gravidezorganizada.online/cadastro?email=${encodeURIComponent(email)}`
-            : 'https://gravidezorganizada.online';
-          window.location.href = appUrl;
-        }}>ACESSAR O APLICATIVO</Button>
-      </motion.div>
-    </div>
-  );
-};
+const SectionSubtitle = ({ children, className = "" }: { children: React.ReactNode, className?: string }) => (
+  <p className={`text-base md:text-lg text-brand-text-muted text-center max-w-2xl mx-auto mb-8 md:mb-12 ${className}`}>
+    {children}
+  </p>
+);
 
 export default function App() {
-  const isSuccessPage = window.location.pathname === '/sucesso' || new URLSearchParams(window.location.search).has('email');
-
-  if (isSuccessPage) {
-    return <SuccessView />;
-  }
+  const handleCTAClick = (eventName: string) => {
+    trackEvent(eventName, { value: 19.90, currency: 'BRL' });
+    window.location.href = getCheckoutUrl();
+  };
 
   return (
-    <div className="min-h-screen bg-white font-sans selection:bg-brand-accent/30 selection:text-brand-text">
-      {/* 1. HERO SECTION */}
-      <header className="relative pt-6 pb-8 px-6 overflow-hidden">
-        <DecorativeBackground />
-        
-        <div className="max-w-7xl mx-auto text-center relative z-10">
-{/* Logo */}
-          <div className="flex justify-center mb-6">
-            <motion.div 
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center gap-3"
-            >
-              <div className="w-12 h-12 bg-brand-accent rounded-2xl flex items-center justify-center shadow-premium shadow-brand-accent/20">
-                <Heart className="text-white w-6 h-6" fill="currentColor" />
-              </div>
-              <span className="text-2xl font-bold tracking-tight text-brand-text font-display">Gravidez Organizada</span>
-            </motion.div>
-          </div>
-
-          {/* Headline */}
-          <motion.h1 
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="text-2xl md:text-5xl lg:text-6xl font-black text-brand-text leading-[1.1] mb-4 max-w-5xl mx-auto text-balance tracking-tight px-4 md:px-0"
-          >
-           Veja em que fase da gravidez você está, entenda o desenvolvimento do bebê e saiba os próximos passos importantes em um só lugar.
-          </motion.h1>
-
-          {/* Mockup Principal */}
-          <motion.div 
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
-            className="relative max-w-4xl mx-auto mb-6 md:mb-8 px-4 md:px-0"
-          >
-            <div className="relative z-10 rounded-[2rem] overflow-hidden shadow-lg">
-              <img 
-                src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774495739/1774438917689-removebg-preview_lenqun.png" 
-                alt="Gravidez Organizada" 
-                className="w-full h-auto"
-              />
-            </div>
-            {/* Decorative Glows */}
-            <div className="absolute -top-20 -right-20 w-80 h-80 bg-brand-accent/10 rounded-full blur-[120px] -z-10" />
-            <div className="absolute -bottom-20 -left-20 w-80 h-80 bg-brand-accent/10 rounded-full blur-[120px] -z-10" />
-          </motion.div>
-
-          {/* Subheadline */}
-          <motion.p 
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-            className="text-lg md:text-xl text-brand-text-muted mb-6 max-w-3xl mx-auto leading-relaxed font-medium px-4 md:px-0"
-          >
-            Uma plataforma prática para ajudar você a acompanhar sua gravidez com mais clareza, organizar exames e consultas e se sentir menos perdida em cada fase.
-          </motion.p>
-
-          {/* Bullets */}
-          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 mb-6">
-            {[
-              "Semana atual da gravidez",
-              "Desenvolvimento do bebê",
-              "Exames e consultas",
-              "Próximos passos importantes"
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-2 text-sm text-brand-text-muted font-bold">
-                <CheckCircle2 className="w-4 h-4 text-brand-accent" />
-                {item}
-              </div>
-            ))}
-          </div>
-
-          {/* CTA Button */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center"
-          >
-<Button primary className="text-base md:text-lg px-8 md:px-12 py-3 md:py-5" onClick={() => {
-              trackEvent('Lead', { value: 19.90, currency: 'BRL' });
-              window.location.href = getCheckoutUrl();
-            }}>QUERO ACOMPANHAR MINHA GRAVIDEZ COM MAIS CLAREZA</Button>
-
-            {/* Microtexto */}
-            <div className="flex flex-wrap items-center justify-center gap-x-3 gap-y-1 mt-4 text-[11px] font-black uppercase tracking-widest text-brand-text-muted/60">
-              <span className="whitespace-nowrap">Acesso imediato</span>
-              <span className="w-1 h-1 rounded-full bg-brand-lavender-dark" />
-              <span className="whitespace-nowrap">Funciona no celular</span>
-              <span className="w-1 h-1 rounded-full bg-brand-lavender-dark" />
-              <span>Pagamento único</span>
-            </div>
-          </motion.div>
-        </div>
-      </header>
-
-{/* 2. SEÇÃO — DOR CURTA */}
-      <section className="py-12 px-6 bg-white relative overflow-hidden border-b border-brand-lavender/40">
-        <DecorativeBackground />
-        <div className="max-w-3xl mx-auto relative z-10 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-2xl md:text-3xl font-black text-brand-text mb-4 leading-tight">
-                Entre sintomas, exames, consultas e tantas informações espalhadas, muitas gestantes acabam se sentindo perdidas sem saber exatamente o que merece atenção em cada fase.
-              </h2>
-              <div className="mb-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-lg mx-auto px-4 md:px-0">
-                <img 
-                  src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774575000/Gemini_Generated_Image_93jujr93jujr93ju-_1__q2axti.webp" 
-                  alt="Acompanhamento da gravidez" 
-                  className="w-full h-auto"
-                />
-              </div>
-              <div className="space-y-3 mb-6">
-                <p className="text-brand-text-muted text-lg leading-relaxed font-bold">
-                  O Gravidez Organizada foi criado para reunir em um só lugar o que ajuda você a entender sua fase atual, acompanhar o desenvolvimento do bebê e visualizar os próximos passos com mais clareza.
-                </p>
-              </div>
-              <Button primary onClick={() => {
-              trackEvent('Lead', { value: 19.90, currency: 'BRL' });
-              window.location.href = getCheckoutUrl();
-            }}>QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ</Button>
-            </motion.div>
-          </div>
-        </section>
-
-      {/* O QUE O APP MOSTRA */}
-      <section className="py-8 px-6 bg-brand-accent relative overflow-hidden border-b border-white/10">
-        <DecorativeBackground />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4 text-balance tracking-tight">O que você acompanha na plataforma</h2>
-            <p className="text-brand-lavender-dark max-w-3xl mx-auto text-lg md:text-xl font-medium leading-relaxed">Tudo pensado para ajudar você a entender sua fase atual, acompanhar o desenvolvimento do bebê e visualizar o que merece sua atenção em cada momento da gravidez.</p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-            {[
-              { icon: Calendar, title: "Semana atual da gravidez", desc: "Saiba em que semana você está e acompanhe sua evolução com mais clareza." },
-              { icon: Baby, title: "Desenvolvimento do bebê", desc: "Veja o que está acontecendo com o bebê em cada etapa da gestação." },
-              { icon: Stethoscope, title: "Exames e consultas", desc: "Tenha mais organização para acompanhar o que merece sua atenção." },
-              { icon: Compass, title: "Próximos passos importantes", desc: "Visualize o que observar agora e o que vem a seguir." },
-              { icon: ClipboardList, title: "Checklists práticos", desc: "Tenha apoio para não deixar passar pontos importantes da gravidez." },
-              { icon: Clock, title: "Linha do tempo da gravidez", desc: "Acompanhe sua evolução de forma simples e visual." },
-              { icon: Zap, title: "Dicas úteis para o dia a dia da gestação", desc: "Acesse conteúdos de apoio com orientações práticas para a rotina." },
-              { icon: Heart, title: "Registro de momentos e experiências", desc: "Guarde momentos especiais da sua jornada e acompanhe relatos dentro da plataforma." }
-            ].map((item, i) => (
-              <motion.div 
-                key={i} 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-                viewport={{ once: true }}
-                className={`group flex flex-col bg-white/10 p-6 rounded-[2rem] border border-white/20 shadow-premium transition-all duration-300 hover:shadow-premium hover:scale-[1.02] hover:bg-white/20`}
-              >
-                <div className="w-14 h-14 rounded-[1.5rem] bg-white/20 flex items-center justify-center text-white mb-4 shadow-premium transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
-                  {item.icon && <item.icon className="w-7 h-7" />}
-                </div>
-                <div className="">
-                  <h3 className="text-lg font-bold text-white mb-2 tracking-tight group-hover:text-white transition-colors">{item.title}</h3>
-                  <p className="text-brand-lavender-dark leading-relaxed text-[15px] font-medium">{item.desc}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-          
-          <div className="text-center mt-8">
-            <button onClick={() => {
-              trackEvent('Lead', { value: 19.90, currency: 'BRL' });
-              window.location.href = getCheckoutUrl();
-            }} className="px-8 py-4 rounded-full font-bold bg-white text-brand-text shadow-lg hover:bg-brand-lavender transition-all duration-300">
-              QUERO ACESSAR AGORA
-            </button>
-          </div>
-        </div>
-      </section>
-
-      {/* 8. BLOCO DE VALOR */}
-      <section className="py-4 px-6 bg-bg-warm-gray relative">
-        <DecorativeBackground />
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h2 className="text-lg md:text-xl font-bold text-brand-text mb-3 text-balance">Tudo o que você precisa para acompanhar sua gravidez com mais clareza em um só lugar</h2>
-          <p className="text-brand-text-muted text-base leading-relaxed font-medium">Você acessa uma plataforma prática para entender sua fase atual, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e viver sua jornada com mais organização e tranquilidade.</p>
-          <div className="mt-6 rounded-[2rem] overflow-hidden shadow-premium border border-brand-lavender/60 max-w-lg mx-auto px-4 md:px-0">
-            <img 
-              src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1774579194/Gemini_Generated_Image_6ljw1j6ljw1j6ljw-removebg-preview_dtdmah.webp" 
-              alt="Gravidez Organizada" 
-              className="w-full h-auto"
-            />
-          </div>
-</div>
-        </section>
-
-      {/* BENEFÍCIOS */}
-      <section className="py-6 px-6 bg-white border-y border-brand-lavender/40 relative">
-        <DecorativeBackground />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-4">
-            <h2 className="text-xl md:text-3xl font-bold text-brand-text mb-3">O que muda quando você acompanha sua gravidez com mais clareza</h2>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-            {[
-              { icon: Calendar, title: "Em que semana da gravidez você está", desc: "Saiba exatamente em que fase você está." },
-              { icon: Baby, title: "Como o bebê está se desenvolvendo", desc: "Acompanhe o desenvolvimento do bebê em cada etapa." },
-              { icon: Compass, title: "O que merece sua atenção agora", desc: "Veja o que é importante no momento atual." },
-              { icon: Stethoscope, title: "Exames e consultas importantes", desc: "Organize e acompanhe seus exames e consultas." },
-              { icon: ClipboardList, title: "Próximos passos da sua fase", desc: "Visualize o que vem a seguir." },
-              { icon: LayoutDashboard, title: "Informações organizadas em um só lugar", desc: "Tudo o que você precisa em um único lugar." }
-            ].map((item, i) => (
-              <div key={i} className="p-5 rounded-[2rem] bg-white shadow-card border-2 border-brand-accent/40 hover:shadow-premium hover:border-brand-accent transition-all duration-500 group">
-                <div className="w-9 h-9 rounded-lg bg-brand-lavender flex items-center justify-center text-brand-accent mb-3 group-hover:bg-brand-accent group-hover:text-white transition-colors">
-                  <item.icon className="w-4 h-4" />
-                </div>
-                <h3 className="text-base font-bold text-brand-text mb-1 tracking-tight">{item.title}</h3>
-                <p className="text-brand-text-muted leading-relaxed text-[13px] font-medium">{item.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* AMPLIAÇÃO DE MERCADO */}
-      <section className="py-6 px-6 bg-bg-warm-gray relative">
-        <DecorativeBackground />
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <p className="text-brand-text-muted text-lg leading-relaxed font-medium">
-            Se esta é sua primeira gravidez, a plataforma ajuda você a entender melhor cada etapa com mais clareza e menos insegurança. Se você já é mãe, ela ajuda a acompanhar tudo com mais praticidade e menos carga mental na rotina.
-          </p>
-        </div>
-      </section>
-
-      {/* BLOCO DE DIFERENCIAÇÃO */}
-      <section className="py-6 px-6 bg-white border-y border-brand-lavender/40 relative">
-        <DecorativeBackground />
-        <div className="max-w-3xl mx-auto text-center relative z-10">
-          <h2 className="text-xl md:text-3xl font-bold text-brand-text mb-4">Por que não é a mesma coisa que buscar informações soltas na internet?</h2>
-          <p className="text-brand-text-muted text-lg leading-relaxed font-medium">
-            Porque aqui você não precisa perder tempo procurando em vários lugares o que é importante em cada fase. O Gravidez Organizada reúne de forma prática o que ajuda você a entender sua gravidez, acompanhar o bebê e visualizar os próximos passos em um só lugar.
-          </p>
-        </div>
-      </section>
-
-      {/* 10. SEÇÃO DE BÔNUS */}
-      <section className="py-6 px-6 bg-white relative">
-        <DecorativeBackground />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-4">
-            <h2 className="text-xl md:text-3xl font-bold text-brand-text mb-3">Bônus para deixar sua jornada ainda mais prática</h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-4">
-            {[
-              { icon: Stethoscope, tag: "Bônus 1", title: "Checklist da Consulta Pré-Natal", desc: "Um guia simples para ajudar você a se organizar melhor para suas consultas." },
-              { icon: ShoppingBag, tag: "Bônus 2", title: "Checklist da Maternidade", desc: "Uma lista prática para ajudar você a se preparar com mais objetividade." },
-              { icon: MessageCircleQuestion, tag: "Bônus 3", title: "Perguntas para levar ao obstetra", desc: "Um material de apoio com perguntas úteis para esclarecer dúvidas importantes nas consultas." }
-            ].map((item, i) => (
-              <Card key={i} className="relative group bg-bg-off-white p-5">
-                <div className="absolute top-4 right-4 bg-brand-accent text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-premium">{item.tag}</div>
-                <div className="w-12 h-12 rounded-lg bg-brand-lavender flex items-center justify-center text-brand-accent mb-4 group-hover:bg-brand-accent group-hover:text-white transition-all duration-300">
-                  <item.icon className="w-6 h-6" />
-                </div>
-                <h3 className="text-lg font-bold text-brand-text mb-2 tracking-tight">{item.title}</h3>
-                <p className="text-brand-text-muted text-[13px] leading-relaxed font-medium">{item.desc}</p>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section id="preco" className="py-6 px-6 bg-brand-accent relative overflow-hidden">
-        <DecorativeBackground />
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-4">
-            <h2 className="text-xl md:text-2xl font-bold text-white mb-2">Tenha acesso ao Gravidez Organizada por pagamento único.</h2>
-          </div>
-          <motion.div 
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            viewport={{ once: true }}
-            className="max-w-4xl mx-auto glass bg-white/10 backdrop-blur-lg rounded-[3rem] shadow-premium border border-white/20 overflow-hidden grid md:grid-cols-2"
-          >
-            <div className="p-6 bg-brand-accent border-r border-white/20">
-              <h3 className="text-xl font-bold text-white mb-4 font-display">Ao comprar hoje, você recebe:</h3>
-              <ul className="space-y-2">
-                {[
-                  "Veja sua fase atual",
-                  "Entenda o desenvolvimento do bebê",
-                  "Organize exames e consultas",
-                  "Saiba os próximos passos",
-                  "Use direto no celular"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-[13px] font-bold text-white">
-                    <CheckCircle2 className="w-4 h-4 text-white mt-0.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-              </ul>
-              <p className="text-white font-bold text-sm mt-4 mb-2">E ainda recebe como bônus:</p>
-              <ul className="space-y-2">
-                {[
-                  "Checklist da Consulta Pré-Natal",
-                  "Checklist da Maternidade",
-                  "Perguntas para levar ao obstetra"
-                ].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-[13px] font-bold text-white">
-                    <CheckCircle2 className="w-4 h-4 text-white mt-0.5 shrink-0" />
-                    {item}
-                  </li>
-                ))}
-</ul>
-            </div>
-            <div className="p-6 flex flex-col justify-center text-center bg-white relative">
-              <div className="mb-4">
-                <p className="text-brand-text-muted font-bold text-sm uppercase tracking-widest mb-2">Condição especial de hoje</p>
-                <span className="text-brand-text-muted/40 line-through text-xl font-bold">De R$ 37,90</span>
-                <div className="flex items-center justify-center gap-1 mt-1">
-                  <span className="text-2xl font-bold text-brand-text self-start mt-2">por apenas</span>
-                  <span className="text-5xl font-black text-brand-text font-display">R$ 19,90</span>
-                </div>
-                <div className="flex items-center justify-center gap-4 mt-3 text-[11px] font-bold uppercase tracking-widest text-brand-accent">
-<span className="whitespace-nowrap">Pagamento único</span>
-                  <span className="w-1 h-1 rounded-full bg-brand-accent" />
-                  <span className="whitespace-nowrap">Acesso imediato</span>
-                </div>
-              </div>
-
-              <Button primary className="w-full text-base py-4 mb-4 shadow-brand-accent/40 bg-green-600 hover:bg-green-500 font-black" onClick={() => {
-                trackEvent('InitiateCheckout', { value: 19.90, currency: 'BRL' });
-                window.location.href = getCheckoutUrl();
-              }}>QUERO ACESSAR AGORA</Button>
-              
-              <div className="flex flex-col gap-1 items-center text-[11px] text-brand-text-muted font-bold uppercase tracking-wider">
-                <div className="flex items-center gap-2">
-                  <ShieldCheck className="w-4 h-4 text-green-500" />
-                  Garantia de 7 dias
-                </div>
-                <div className="flex items-center gap-2">
-                  <Smartphone className="w-4 h-4 text-brand-accent" />
-                  Acesso imediato no celular
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* 13. BLOCO DE GARANTIA */}
-      <section className="py-6 px-6 bg-bg-warm-gray relative">
-        <DecorativeBackground />
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="bg-white rounded-[2.5rem] shadow-card p-6 md:p-8 border border-brand-lavender/40 flex flex-col md:flex-row items-center gap-6 md:gap-8">
-            <div className="shrink-0">
-              <img src="/selo.png" alt="Garantia de 7 dias" className="w-44 md:w-54 h-auto" />
-            </div>
-            <div className="text-center md:text-left">
-              <h3 className="text-lg md:text-xl font-bold text-brand-text mb-3 font-display">Você tem 7 dias de garantia para conhecer o Gravidez Organizada com tranquilidade</h3>
-              <p className="text-brand-text-muted text-[15px] leading-relaxed font-medium">
-                Entre, explore a plataforma e veja se ela faz sentido para este momento da sua gravidez. Se dentro de 7 dias você entender que o Gravidez Organizada não é para você, poderá solicitar o cancelamento conforme as condições informadas.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* 14. FAQ */}
-      <section className="py-6 px-6 bg-bg-off-white relative overflow-hidden">
-        <DecorativeBackground />
-        <div className="max-w-4xl mx-auto relative z-10">
-          <div className="text-center mb-4">
-            <h2 className="text-xl md:text-3xl font-bold text-brand-text mb-3">Perguntas frequentes</h2>
-          </div>
-          
-          <div className="glass bg-brand-lavender rounded-[2.5rem] p-6 md:p-8 shadow-premium border border-brand-lavender/60">
-            <FAQItem 
-              question="Como recebo o acesso?" 
-              answer="Após a compra, você receberá as instruções para acessar o aplicativo no celular e fazer seu primeiro acesso." 
-            />
-            <FAQItem 
-              question="Preciso baixar o aplicativo?" 
-              answer="O Gravidez Organizada funciona como plataforma web e pode ser acessado diretamente no celular." 
-            />
-            <FAQItem 
-              question="Funciona em qualquer celular?" 
-              answer="Sim. O acesso foi pensado para ser simples e prático no celular." 
-            />
-            <FAQItem 
-              question="Posso usar mesmo se já estiver com vários meses?" 
-              answer="Sim. A plataforma ajuda você a acompanhar a fase atual da sua gravidez e o que vem a seguir." 
-            />
-            <FAQItem 
-              question="Serve para quem acabou de descobrir a gravidez?" 
-              answer="Sim. Ele pode ser usado desde o início da gestação." 
-            />
-            <FAQItem 
-              question="Isso substitui acompanhamento médico?" 
-              answer="Não. O Gravidez Organizada é uma ferramenta de apoio e organização. Não substitui acompanhamento médico profissional." 
-            />
-            <FAQItem 
-              question="O pagamento é mensal?" 
-              answer="Não. O acesso é por pagamento único." 
-            />
-            <FAQItem 
-              question="Recebo acesso logo após a compra?" 
-              answer="Sim. O acesso é liberado após a confirmação do pagamento." 
-            />
-          </div>
-        </div>
-      </section>
-
-      {/* 15. FECHAMENTO FINAL */}
-      <section className="py-10 px-6 bg-bg-lavender-soft text-center relative overflow-hidden border-t border-brand-lavender/40">
-        <DecorativeBackground />
-        <div className="max-w-5xl mx-auto relative z-10">
-          <h2 className="text-2xl md:text-4xl font-black text-brand-text mb-3 leading-[1.1] font-display text-balance tracking-tight">Tenha sua gravidez <span className="text-brand-accent">mais clara, organizada e acompanhada</span> em um só lugar</h2>
-          <p className="text-base md:text-lg text-brand-text-muted mb-6 max-w-3xl mx-auto font-medium">Se você quer entender melhor cada etapa da gravidez, acompanhar o desenvolvimento do bebê, visualizar os próximos passos importantes e registrar momentos especiais da sua gravidez, o Gravidez Organizada foi feito para isso.</p>
-          <Button primary className="text-lg py-4 px-10 shadow-brand-accent/40" onClick={() => {
-              trackEvent('Lead', { value: 19.90, currency: 'BRL' });
-              window.location.href = getCheckoutUrl();
-            }}>QUERO ACESSAR AGORA</Button>
-          
-          <div className="mt-6 flex justify-center items-center gap-8 opacity-50 grayscale font-bold text-[12px] uppercase tracking-widest">
-             <div className="flex items-center gap-2">
-               <ShieldCheck className="w-5 h-5" />
-               <span>Compra Segura</span>
-             </div>
-             <div className="flex items-center gap-2">
-               <Smartphone className="w-5 h-5" />
-               <span>Acesso Mobile</span>
-             </div>
-             <div className="flex items-center gap-2">
-               <CheckCircle2 className="w-5 h-5" />
-               <span>Pagamento único</span>
-             </div>
-          </div>
-        </div>
-      </section>
-
+    <div className="min-h-screen bg-white font-sans">
       {/* WhatsApp Float Button */}
       <a
         href="https://wa.me/5531992440099?text=Olá,%20gostaria%20de%20saber%20mais%20sobre%20o%20Gravidez%20Organizada"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-6 right-6 w-16 h-16 bg-green-500 hover:bg-green-600 rounded-full flex items-center justify-center shadow-lg hover:shadow-xl transition-all duration-300 z-50 group"
+        className="fixed bottom-6 right-6 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg z-50 hover:bg-green-600 transition-all"
         aria-label="Fale conosco pelo WhatsApp"
       >
-        <Phone className="w-7 h-7 text-white fill-white rotate-[135deg]" />
+        <svg className="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+        </svg>
       </a>
 
-      {/* Footer */}
-      <footer className="py-6 px-6 bg-white border-t border-brand-lavender/40 text-center relative">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex justify-center mb-4">
-            <div className="flex items-center gap-3 opacity-80">
-              <div className="w-10 h-10 bg-brand-text rounded-2xl flex items-center justify-center">
-                <Heart className="text-white w-6 h-6" fill="currentColor" />
+      {/* ========================================== */}
+      {/* SEÇÃO 1 — HERO PRINCIPAL */}
+      {/* ========================================== */}
+      <section className="py-10 md:py-16 px-4 bg-gradient-to-b from-white to-[#F8F7FF]">
+        <div className="max-w-4xl mx-auto text-center">
+          {/* Logo/Título pequeno */}
+          <div className="flex items-center justify-center gap-2 mb-6">
+            <div className="w-10 h-10 bg-[#8B5CF6] rounded-xl flex items-center justify-center">
+              <Heart className="text-white w-5 h-5" fill="currentColor" />
+            </div>
+            <span className="text-lg font-bold text-brand-text">Gravidez Organizada</span>
+          </div>
+
+          {/* Headline */}
+          <h1 className="text-2xl md:text-5xl font-black text-brand-text leading-[1.15] mb-4 px-2">
+            Veja em que fase da gravidez você está, entenda o que merece sua atenção agora e pare de depender de informações espalhadas.
+          </h1>
+
+          {/* Subheadline */}
+          <p className="text-base md:text-xl text-brand-text-muted mb-6 max-w-2xl mx-auto px-2">
+            Um app simples e prático que funciona como seu GPS da Gestação, reunindo em um só lugar o que ajuda você a acompanhar sua gravidez com mais clareza e menos confusão.
+          </p>
+
+          {/* Mockup visual */}
+          <div className="relative max-w-xs mx-auto mb-8">
+            <div className="bg-gradient-to-br from-[#8B5CF6]/10 to-[#8B5CF6]/5 rounded-3xl p-4 border border-[#8B5CF6]/20">
+              <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+                <div className="bg-[#8B5CF6] p-4 text-center">
+                  <span className="text-white font-bold">Você está na</span>
+                </div>
+                <div className="p-6">
+                  <div className="text-5xl font-black text-[#8B5CF6] mb-2">24ª</div>
+                  <div className="text-sm text-brand-text-muted mb-4">semana de gravidez</div>
+                  <div className="space-y-3">
+                    <div className="flex items-center gap-2 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-[#00A63E]" />
+                      <span>Bebê tem 22cm</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-[#00A63E]" />
+                      <span>Peso aprox. 600g</span>
+                    </div>
+                    <div className="flex items-center gap-2 text-sm">
+                      <CheckCircle2 className="w-4 h-4 text-[#00A63E]" />
+                      <span>Surdos agora</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              <span className="text-2xl font-bold tracking-tight text-brand-text font-display">Gravidez Organizada</span>
             </div>
           </div>
-          <p className="text-brand-text-muted text-[13px] font-bold max-w-lg mx-auto leading-relaxed">
-            © 2026 Gravidez Organizada. Todos os direitos reservados.<br />
-            O Gravidez Organizada é uma ferramenta de apoio e organização da gravidez. Não substitui acompanhamento médico profissional.
+
+          {/* Bullets */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-6 mb-8">
+            {[
+              "Semana atual da gravidez",
+              "Desenvolvimento do bebê",
+              "O que merece sua atenção agora",
+              "Próximos passos importantes"
+            ].map((item, i) => (
+              <div key={i} className="flex items-center gap-2 text-sm md:text-base text-brand-text-muted">
+                <CheckCircle2 className="w-5 h-5 text-[#8B5CF6]" />
+                {item}
+              </div>
+            ))}
+          </div>
+
+          {/* Botão CTA */}
+          <Button onClick={() => handleCTAClick('Lead')} className="w-full max-w-sm mx-auto">
+            QUERO MEU GPS DA GESTAÇÃO AGORA
+          </Button>
+
+          {/* Microprovas */}
+          <div className="flex flex-wrap justify-center gap-3 md:gap-6 mt-6 text-xs md:text-sm font-medium text-brand-text-muted">
+            <span>Acesso imediato</span>
+            <span className="w-1 h-1 rounded-full bg-[#8B5CF6]/40" />
+            <span>Funciona no celular</span>
+            <span className="w-1 h-1 rounded-full bg-[#8B5CF6]/40" />
+            <span>Pagamento único</span>
+            <span className="w-1 h-1 rounded-full bg-[#8B5CF6]/40" />
+            <span>Garantia de 7 dias</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 2 — DOR / AGITAÇÃO */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <SectionTitle>
+            A gravidez já traz mudanças demais. Você não precisa carregar também o peso de 1.000 informações soltas.
+          </SectionTitle>
+          
+          <p className="text-base md:text-lg text-brand-text-muted mb-6">
+            Entre exames, consultas, sintomas, preparativos e tanto conteúdo espalhado, muitas gestantes acaba mentalmente sobrecarregadas, sem saber exatamente o que merece atenção em cada fase.
+          </p>
+          
+          <p className="text-lg md:text-xl font-semibold text-brand-text mb-8">
+            O problema não é falta de informação.<br/>
+            <span className="text-[#8B5CF6]">É excesso.</span>
+          </p>
+          
+          <p className="text-base text-brand-text-muted">
+            E quando tudo parece solto, vem aquela sensação de confusão, insegurança e medo de deixar passar algo importante.
           </p>
         </div>
+
+        {/* 3 Cards de dor */}
+        <div className="max-w-4xl mx-auto mt-10 grid md:grid-cols-3 gap-4 md:gap-6">
+          {[
+            { icon: Brain, title: "Informação demais", desc: "Você pesquisa, salva conteúdo e mesmo assim continua com dúvidas." },
+            { icon: AlertCircle, title: "Peso mental", desc: "Exames, consultas, sintomas e preparativos acabam ficam todos na sua cabeça." },
+            { icon: Eye, title: "Medo de esquecer algo", desc: "Fica difícil saber o que é prioridade agora e o que pode esperar." }
+          ].map((item, i) => (
+            <div key={i} className="bg-[#F8F7FF] rounded-2xl p-6 text-center border border-[#8B5CF6]/10">
+              <div className="w-12 h-12 bg-[#8B5CF6]/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                <item.icon className="w-6 h-6 text-[#8B5CF6]" />
+              </div>
+              <h3 className="font-bold text-brand-text mb-2">{item.title}</h3>
+              <p className="text-sm text-brand-text-muted">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 3 — APRESENTAÇÃO DA SOLUÇÃO */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-[#F8F7FF]">
+        <div className="max-w-3xl mx-auto text-center">
+          <SectionTitle>
+            Foi para isso que criamos o Gravidez Organizada.
+          </SectionTitle>
+          
+          <p className="text-base md:text-lg text-brand-text-muted mb-8">
+            O Gravidez Organizada reúne em um só lugar o que ajuda você a entender sua fase atual, acompanhar o desenvolvimento do bebê, visualizar o que merece sua atenção agora e organizar os próximos passos importantes.
+          </p>
+          
+          <p className="text-base text-brand-text-muted mb-8">
+            Tudo de forma simples, prática e fácil de acessar no celular.
+          </p>
+          
+          <Button onClick={() => handleCTAClick('Lead')}>
+            QUERO TER MAIS CLAREZA NA MINHA GRAVIDEZ
+          </Button>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 4 — MECANISMO ÚNICO */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <SectionTitle>
+            Seu GPS da Gestação em 4 pontos simples
+          </SectionTitle>
+          <SectionSubtitle>
+            Uma forma prática de acompanhar sua gravidez sem depender de informações espalhadas.
+          </SectionSubtitle>
+          
+          <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+            {[
+              { num: "1", title: "Onde você está agora", desc: "Veja em que fase da gravidez você está com clareza." },
+              { num: "2", title: "O que está acontecendo com o bebê", desc: "Entenda o desenvolvimento da fase atual de forma simples." },
+              { num: "3", title: "O que merece sua atenção agora", desc: "Saiba o que observar, acompanhar e organizar neste momento." },
+              { num: "4", title: "O que vem a seguir", desc: "Visualize os próximos passos com mais clareza e menos confusão." }
+            ].map((item, i) => (
+              <div key={i} className="bg-[#F8F7FF] rounded-2xl p-6 text-left border border-[#8B5CF6]/20">
+                <div className="flex items-start gap-4">
+                  <div className="w-10 h-10 bg-[#8B5CF6] rounded-full flex items-center justify-center shrink-0">
+                    <span className="text-white font-bold">{item.num}</span>
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-brand-text mb-1">{item.title}</h3>
+                    <p className="text-sm text-brand-text-muted">{item.desc}</p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 5 — O QUE TEM DENTRO DO PRODUTO */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-[#F8F7FF]">
+        <div className="max-w-4xl mx-auto text-center">
+          <SectionTitle>
+            Tudo o que você encontra no Gravidez Organizada
+          </SectionTitle>
+          <SectionSubtitle>
+            Um painel simples no celular para ajudar você a acompanhar sua gravidez com mais clareza e organização.
+          </SectionSubtitle>
+          
+          <div className="grid md:grid-cols-2 gap-4">
+            {[
+              { icon: Calendar, title: "Semana atual da gravidez", desc: "Saiba exatamente em que fase você está." },
+              { icon: Baby, title: "Desenvolvimento do bebê", desc: "Entenda o que está acontecendo em cada etapa." },
+              { icon: Compass, title: "O que merece sua atenção agora", desc: "Veja o que é importante no momento atual." },
+              { icon: Stethoscope, title: "Exames e consultas", desc: "Organize e acompanhe seus exames e consultas." },
+              { icon: ArrowRight, title: "Próximos passos", desc: "Visualize o que vem a seguir sem se sentir perdida." },
+              { icon: ClipboardList, title: "Checklists práticos", desc: "Tenha apoio para não deixar passar pontos importantes." }
+            ].map((item, i) => (
+              <div key={i} className="bg-white rounded-2xl p-5 shadow-sm border border-[#8B5CF6]/10 flex items-start gap-4">
+                <div className="w-10 h-10 bg-[#8B5CF6]/10 rounded-xl flex items-center justify-center shrink-0">
+                  <item.icon className="w-5 h-5 text-[#8B5CF6]" />
+                </div>
+                <div className="text-left">
+                  <h3 className="font-bold text-brand-text mb-1">{item.title}</h3>
+                  <p className="text-sm text-brand-text-muted">{item.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+          
+          <div className="mt-8">
+            <Button onClick={() => handleCTAClick('Lead')}>
+              QUERO ACESSAR AGORA
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 6 — COMPARATIVO */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <SectionTitle>
+            Por que não é a mesma coisa que buscar informações soltas na internet?
+          </SectionTitle>
+          
+          <div className="grid md:grid-cols-2 gap-6 mt-8">
+            <div className="bg-gray-50 rounded-2xl p-6 text-left">
+              <h3 className="font-bold text-brand-text mb-4 text-center">Informações soltas</h3>
+              <ul className="space-y-3">
+                {["conteúdo espalhado", "dúvidas conflitantes", "difícil saber o que é prioridade", "você precisa filtrar tudo sozinha", "mais peso mental"].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-brand-text-muted">
+                    <span className="text-red-500 mt-1">✕</span> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div className="bg-[#F8F7FF] rounded-2xl p-6 text-left border-2 border-[#8B5CF6]">
+              <h3 className="font-bold text-[#8B5CF6] mb-4 text-center">Gravidez Organizada</h3>
+              <ul className="space-y-3">
+                {["fase atual em um só lugar", "desenvolvimento do bebê com clareza", "atenção ao que importa agora", "próximos passos organizados", "mais leveza mental e praticidade"].map((item, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-brand-text">
+                    <CheckCircle2 className="w-4 h-4 text-[#8B5CF6] mt-1" /> {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+          
+          <p className="text-xl font-bold text-brand-text mt-8">
+            Mais clareza, menos confusão.<br/>
+            <span className="text-[#8B5CF6]">Mais organização, menos carga mental.</span>
+          </p>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 7 — PARA QUEM É */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-[#F8F7FF]">
+        <div className="max-w-3xl mx-auto text-center">
+          <SectionTitle>
+            Ideal para a gestante que quer clareza sem depender de 1.000 abas abertas no Google
+          </SectionTitle>
+          
+          <div className="mt-8 space-y-4">
+            {[
+              "quer entender melhor a fase atual da gravidez",
+              "sente que tem informação demais e direção de menos",
+              "quer acompanhar o desenvolvimento do bebê com mais clareza",
+              "quer organizar exames, consultas e próximos passos",
+              "quer praticidade no celular"
+            ].map((item, i) => (
+              <div key={i} className="bg-white rounded-xl p-4 shadow-sm flex items-center gap-3 max-w-md mx-auto">
+                <CheckCircle2 className="w-5 h-5 text-[#8B5CF6]" />
+                <span className="text-brand-text">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 8 — BÔNUS */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-white">
+        <div className="max-w-4xl mx-auto text-center">
+          <SectionTitle>
+            Bônus para deixar sua rotina ainda mais prática
+          </SectionTitle>
+          
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 mt-8">
+            {[
+              { icon: Stethoscope, title: "Checklist da Consulta Pré-Natal", desc: "Um guia simples para ajudar você a se organizar melhor antes de cada consulta." },
+              { icon: ShoppingBag, title: "Checklist da Maternidade", desc: "Uma lista prática para ajudar você a se preparar com mais objetividade." },
+              { icon: MessageCircleQuestion, title: "Perguntas para levar ao obstetra", desc: "Um material de apoio com perguntas úteis para esclarecer dúvidas importantes." }
+            ].map((item, i) => (
+              <div key={i} className="bg-[#F8F7FF] rounded-2xl p-6 border border-[#8B5CF6]/20">
+                <div className="w-12 h-12 bg-[#8B5CF6] rounded-xl flex items-center justify-center mx-auto mb-4">
+                  <item.icon className="w-6 h-6 text-white" />
+                </div>
+                <h3 className="font-bold text-brand-text mb-2">{item.title}</h3>
+                <p className="text-sm text-brand-text-muted">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 9 — OFERTA */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-[#8B5CF6]">
+        <div className="max-w-3xl mx-auto text-center">
+          <h2 className="text-2xl md:text-4xl font-black text-white mb-4">
+            Tenha acesso ao Gravidez Organizada por pagamento único
+          </h2>
+          
+          <p className="text-white/80 mb-8">
+            Ao comprar hoje, você recebe acesso a uma solução prática para:
+          </p>
+          
+          <div className="bg-white/10 backdrop-blur rounded-2xl p-6 mb-8">
+            <ul className="space-y-3 text-white">
+              {[
+                "ver sua fase atual da gravidez",
+                "entender o desenvolvimento do bebê",
+                "saber o que merece atenção agora",
+                "organizar exames e consultas",
+                "acompanhar os próximos passos"
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-2 justify-center">
+                  <Check className="w-5 h-5" /> {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+          
+          <p className="text-white/80 mb-4">
+            E ainda recebe como bônus:
+          </p>
+          
+          <div className="bg-[#00A63E]/30 rounded-xl p-4 mb-8">
+            <ul className="space-y-2 text-white">
+              <li>✓ Checklist da Consulta Pré-Natal</li>
+              <li>✓ Checklist da Maternidade</li>
+              <li>✓ Perguntas para levar ao obstetra</li>
+            </ul>
+          </div>
+          
+          <p className="text-white/80 text-lg mb-2">Condição especial de hoje</p>
+          
+          <div className="mb-6">
+            <span className="text-white/60 line-through text-xl">De R$ 37,90</span>
+            <div className="text-5xl font-black text-white">R$ 19,90</div>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4 mb-6 text-white/80 text-sm">
+            <span>Pagamento único</span>
+            <span className="w-1 h-1 rounded-full bg-white/40 mt-2" />
+            <span>Acesso imediato</span>
+          </div>
+          
+          <Button 
+            onClick={() => handleCTAClick('InitiateCheckout')} 
+            variant="primary"
+            className="w-full max-w-sm mx-auto text-lg"
+          >
+            QUERO ACESSAR AGORA
+          </Button>
+          
+          <div className="flex items-center justify-center gap-4 mt-6 text-white/60 text-sm">
+            <div className="flex items-center gap-2">
+              <ShieldCheck className="w-4 h-4" />
+              <span>Garantia de 7 dias</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 10 — GARANTIA */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-white">
+        <div className="max-w-3xl mx-auto">
+          <div className="bg-[#F8F7FF] rounded-2xl p-8 text-center border border-[#8B5CF6]/20">
+            <div className="w-20 h-20 bg-[#8B5CF6]/10 rounded-full flex items-center justify-center mx-auto mb-6">
+              <ShieldCheck className="w-10 h-10 text-[#8B5CF6]" />
+            </div>
+            
+            <h2 className="text-xl md:text-2xl font-bold text-brand-text mb-4">
+              Você tem 7 dias de garantia para conhecer o Gravidez Organizada com tranquilidade
+            </h2>
+            
+            <p className="text-brand-text-muted mb-4">
+              Entre, explore e veja se ele faz sentido para este momento da sua gravidez.
+            </p>
+            
+            <p className="text-brand-text-muted">
+              Se dentro de 7 dias você entender que o Gravidez Organizada não é para você, poderá solicitar o cancelamento conforme as condições informadas.
+            </p>
+          </div>
+          
+          <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm text-brand-text-muted">
+            <span>Acesso imediato no celular</span>
+            <span className="w-1 h-1 rounded-full bg-[#8B5CF6]/40" />
+            <span>Garantia de 7 dias</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 11 — FAQ */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-[#F8F7FF]">
+        <div className="max-w-3xl mx-auto">
+          <SectionTitle className="mb-8">
+            Perguntas frequentes
+          </SectionTitle>
+          
+          <div className="bg-white rounded-2xl p-6 shadow-sm">
+            <FAQItem question="Como recebo o acesso?" answer="O acesso é liberado após a confirmação da compra, com as orientações enviadas para você." />
+            <FAQItem question="Preciso baixar o aplicativo?" answer="Não necessariamente. O acesso pode ser feito de forma prática pelo celular." />
+            <FAQItem question="Funciona em qualquer celular?" answer="Sim. A plataforma foi pensada para funcionar no celular de forma simples e prática." />
+            <FAQItem question="Posso usar mesmo se já estiver com vários meses?" answer="Sim. Você pode usar em diferentes fases da gravidez." />
+            <FAQItem question="Serve para quem acabou de descobrir a gravidez?" answer="Sim. O Gravidez Organizada ajuda desde o início a acompanhar a gravidez com mais clareza." />
+            <FAQItem question="Isso substitui acompanhamento médico?" answer="Não. O Gravidez Organizada é uma ferramenta de apoio e organização. Não substitui acompanhamento médico profissional." />
+            <FAQItem question="O pagamento é mensal?" answer="Não. O pagamento é único." />
+            <FAQItem question="Recebo acesso logo após a compra?" answer="Sim. O acesso é liberado após a confirmação do pagamento." />
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* SEÇÃO 12 — CTA FINAL */}
+      {/* ========================================== */}
+      <section className="py-12 md:py-16 px-4 bg-white">
+        <div className="max-w-3xl mx-auto text-center">
+          <SectionTitle>
+            Tenha sua gravidez mais clara, organizada e acompanhada em um só lugar
+          </SectionTitle>
+          
+          <p className="text-base md:text-lg text-brand-text-muted mb-8 max-w-2xl mx-auto">
+            Se você quer entender melhor cada etapa da gravidez, acompanhar o desenvolvimento do bebê e visualizar o que realmente importa agora com mais praticidade, o Gravidez Organizada foi feito para isso.
+          </p>
+          
+          <Button onClick={() => handleCTAClick('Lead')} className="w-full max-w-sm mx-auto">
+            QUERO MEU GPS DA GESTAÇÃO AGORA
+          </Button>
+          
+          <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm font-medium text-brand-text-muted">
+            <span>Compra Segura</span>
+            <span className="w-1 h-1 rounded-full bg-[#8B5CF6]/40" />
+            <span>Acesso Mobile</span>
+            <span className="w-1 h-1 rounded-full bg-[#8B5CF6]/40" />
+            <span>Pagamento único</span>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================== */}
+      {/* RODAPÉ */}
+      {/* ========================================== */}
+      <footer className="py-8 px-4 bg-[#F8F7FF] border-t border-[#8B5CF6]/10 text-center">
+        <div className="flex items-center justify-center gap-2 mb-4">
+          <div className="w-8 h-8 bg-[#8B5CF6] rounded-lg flex items-center justify-center">
+            <Heart className="text-white w-4 h-4" fill="currentColor" />
+          </div>
+          <span className="font-bold text-brand-text">Gravidez Organizada</span>
+        </div>
+        <p className="text-xs md:text-sm text-brand-text-muted max-w-lg mx-auto">
+          © 2026 Gravidez Organizada. Todos os direitos reservados.<br/>
+          O Gravidez Organizada é uma ferramenta de apoio e organização da gravidez. Não substitui acompanhamento médico profissional.
+        </p>
       </footer>
     </div>
   );
