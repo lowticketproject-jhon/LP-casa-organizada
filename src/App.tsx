@@ -387,12 +387,12 @@ export default function App() {
           </SectionTitle>
           
           <div className="grid md:grid-cols-2 gap-6 mt-8">
-            <div className="bg-gray-50 rounded-2xl p-6 text-left">
-              <h3 className="font-bold text-brand-text mb-4 text-center">Informações soltas</h3>
+            <div className="bg-red-50 rounded-2xl p-6 text-left border border-red-100">
+              <h3 className="font-bold text-red-500 mb-4 text-center">Informações soltas</h3>
               <ul className="space-y-3">
                 {["conteúdo espalhado", "dúvidas conflitantes", "difícil saber o que é prioridade", "você precisa filtrar tudo sozinha", "mais peso mental"].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-brand-text-muted">
-                    <span className="text-red-500 mt-1">✕</span> {item}
+                  <li key={i} className="flex items-start gap-2 text-sm text-red-400">
+                    <span className="text-red-400 mt-1 font-bold">✕</span> {item}
                   </li>
                 ))}
               </ul>
@@ -484,7 +484,7 @@ export default function App() {
           </p>
           
           <div className="bg-white/10 backdrop-blur rounded-2xl p-6 mb-8">
-            <ul className="space-y-3 text-white">
+            <ul className="space-y-3">
               {[
                 "ver sua fase atual da gravidez",
                 "entender o desenvolvimento do bebê",
@@ -492,22 +492,30 @@ export default function App() {
                 "organizar exames e consultas",
                 "acompanhar os próximos passos"
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-2 justify-center">
-                  <Check className="w-5 h-5" /> {item}
+                <li key={i} className="flex items-center gap-3 justify-start bg-white/10 rounded-xl px-4 py-2.5">
+                  <span className="flex-shrink-0 w-6 h-6 bg-[#00A63E] rounded-full flex items-center justify-center">
+                    <Check className="w-3.5 h-3.5 text-white" />
+                  </span>
+                  <span className="text-white font-medium text-sm">{item}</span>
                 </li>
               ))}
             </ul>
           </div>
           
-          <p className="text-white/80 mb-4">
+          <p className="text-white/80 mb-4 font-semibold">
             E ainda recebe como bônus:
           </p>
           
-          <div className="bg-[#00A63E]/30 rounded-xl p-4 mb-8">
-            <ul className="space-y-2 text-white">
-              <li>✓ Checklist da Consulta Pré-Natal</li>
-              <li>✓ Checklist da Maternidade</li>
-              <li>✓ Perguntas para levar ao obstetra</li>
+          <div className="bg-[#00A63E]/20 border border-[#00A63E]/40 rounded-xl p-5 mb-8">
+            <ul className="space-y-3">
+              {["Checklist da Consulta Pré-Natal", "Checklist da Maternidade", "Perguntas para levar ao obstetra"].map((bonus, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <span className="flex-shrink-0 w-6 h-6 bg-[#00A63E] rounded-full flex items-center justify-center">
+                    <Check className="w-3.5 h-3.5 text-white" />
+                  </span>
+                  <span className="text-white font-semibold text-sm">{bonus}</span>
+                </li>
+              ))}
             </ul>
           </div>
           
@@ -547,8 +555,12 @@ export default function App() {
       <section className="py-12 md:py-16 px-4 bg-white">
         <div className="max-w-3xl mx-auto">
           <div className="bg-[#F8F7FF] rounded-2xl p-8 text-center border border-[#8B5CF6]/20">
-            <div className="w-20 h-20 bg-[#8B5CF6]/10 rounded-full flex items-center justify-center mx-auto mb-6">
-              <ShieldCheck className="w-10 h-10 text-[#8B5CF6]" />
+            <div className="mx-auto mb-6 flex items-center justify-center">
+              <img 
+                src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1773801684/ChatGPT_Image_17_de_mar._de_2026__22_41_10-removebg-preview_cau976.webp" 
+                alt="Selo de Garantia 7 dias" 
+                className="w-32 h-32 object-contain"
+              />
             </div>
             
             <h2 className="text-xl md:text-2xl font-bold text-brand-text mb-4">
