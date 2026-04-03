@@ -118,20 +118,85 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
   );
 };
 
-const AppMockup = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
+const AppMockup = ({ size = 'md' }: { size?: 'sm' | 'md' | 'lg' }) => (
   <div className="relative">
-    <div className={`absolute inset-0 bg-[#8B5CF6]/20 rounded-3xl blur-3xl scale-110 -z-10`} />
-    <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-[#8B5CF6]/10 ${size === 'sm' ? 'max-w-[400px]' : 'max-w-[560px] md:max-w-[600px]'}`}>
-      <div className="bg-[#8B5CF6] px-4 py-2.5 flex items-center justify-between">
-        <span className="text-white text-xs font-bold">Gravidez Organizada</span>
-        <Heart className="w-3.5 h-3.5 text-white/80" fill="currentColor" />
+    <div className={`absolute inset-0 bg-[#8B5CF6]/15 rounded-3xl blur-3xl scale-110 -z-10`} />
+    <div className={`relative bg-white rounded-[2.5rem] shadow-2xl overflow-hidden border border-[#8B5CF6]/10 ${size === 'sm' ? 'max-w-[400px]' : size === 'lg' ? 'max-w-[600px]' : 'max-w-[560px] md:max-w-[600px]'}`}>
+      <div className="bg-[#8B5CF6] px-5 py-3 flex items-center justify-between">
+        <span className="text-white text-xs font-black tracking-widest uppercase">Dashboard</span>
+        <Heart className="w-4 h-4 text-white/90" fill="currentColor" />
       </div>
       <img
         src={IMG_MOCKUP}
-        alt="Tela do app Gravidez Organizada mostrando semana, desenvolvimento do bebê e próximos passos"
+        alt="Visualização do app"
         className="w-full object-cover"
-        loading="eager"
+        loading="lazy"
       />
+    </div>
+  </div>
+);
+
+const HeroComposition = () => (
+  <div className="relative w-full max-w-[400px] md:max-w-[500px]">
+    {/* Glow central */}
+    <div className="absolute inset-0 bg-[#8B5CF6]/20 rounded-full blur-[100px] -z-10 scale-150" />
+    
+    {/* Celular Principal */}
+    <div className="relative z-10 transform scale-110 md:scale-100">
+      <div className="relative bg-white rounded-[3rem] shadow-[0_20px_50px_rgba(139,92,246,0.3)] overflow-hidden border-[6px] border-white ring-1 ring-[#8B5CF6]/10">
+        <div className="bg-[#8B5CF6] px-6 py-4 flex items-center justify-between">
+          <div className="flex flex-col">
+            <span className="text-white/70 text-[10px] font-bold uppercase tracking-tighter">Sua fase atual</span>
+            <span className="text-white text-xs font-black">GRAVIDEZ ORGANIZADA</span>
+          </div>
+          <Heart className="w-5 h-5 text-white" fill="currentColor" />
+        </div>
+        <img
+          src={IMG_MOCKUP}
+          alt="Painel Principal do App"
+          className="w-full object-cover aspect-[9/19]"
+          loading="eager"
+        />
+      </div>
+    </div>
+
+    {/* Card Flutuante 1: Próximos Passos */}
+    <motion.div 
+      initial={{ x: 20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ delay: 0.5 }}
+      className="absolute -right-4 md:-right-10 top-1/4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-[#8B5CF6]/10 hidden sm:block max-w-[160px]"
+    >
+      <div className="flex items-center gap-2 mb-2">
+        <div className="w-7 h-7 bg-[#00A63E] rounded-lg flex items-center justify-center">
+          <ListChecks className="w-4 h-4 text-white" />
+        </div>
+        <span className="text-[10px] font-black text-brand-text uppercase">Checklist</span>
+      </div>
+      <p className="text-[11px] font-bold text-brand-text mb-1">Próximos Passos</p>
+      <p className="text-[9px] text-brand-text-muted leading-tight line-clamp-2">Visualizar o que vem à frente sem se sentir perdida.</p>
+    </motion.div>
+
+    {/* Card Flutuante 2: Sintomas/Destaque */}
+    <motion.div 
+      initial={{ x: -20, opacity: 0 }}
+      animate={{ x: 0, opacity: 1 }}
+      transition={{ delay: 0.7 }}
+      className="absolute -left-4 md:-left-12 bottom-1/4 z-20 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-xl border border-[#8B5CF6]/10 hidden sm:block max-w-[160px]"
+    >
+      <div className="flex items-center gap-2 mb-2">
+        <div className="w-7 h-7 bg-[#8B5CF6] rounded-lg flex items-center justify-center">
+          <Sparkles className="w-4 h-4 text-white" />
+        </div>
+        <span className="text-[10px] font-black text-brand-text uppercase">Agora</span>
+      </div>
+      <p className="text-[11px] font-bold text-brand-text mb-1">O que merece atenção</p>
+      <p className="text-[9px] text-brand-text-muted leading-tight line-clamp-2">Veja o que é importante no momento atual.</p>
+    </motion.div>
+    
+    {/* Badge flutuante mobile (visível em telas menores no lugar dos cards) */}
+    <div className="sm:hidden absolute -bottom-4 -right-2 z-20 bg-[#00A63E] text-white px-4 py-2 rounded-xl text-[10px] font-black shadow-lg flex items-center gap-2">
+      <Zap className="w-3 h-3 fill-current" /> ACESSO IMEDIATO
     </div>
   </div>
 );
@@ -163,65 +228,67 @@ export default function App() {
       {/* ================================================================ */}
       {/* SEÇÃO 1 — HERO PRINCIPAL                                          */}
       {/* ================================================================ */}
-      <section className="pt-10 pb-14 md:pt-16 md:pb-20 px-4 bg-gradient-to-b from-white via-[#FAFAFF] to-[#F0EEFF]">
-        <div className="max-w-5xl mx-auto">
+      <section className="pt-10 pb-14 md:pt-16 md:pb-24 px-4 bg-gradient-to-b from-white via-[#FAFAFF] to-[#F0EEFF] overflow-hidden">
+        <div className="max-w-6xl mx-auto">
 
           {/* Logo */}
-          <div className="flex items-center justify-center gap-2 mb-8">
+          <div className="flex items-center justify-center gap-2 mb-10">
             <div className="w-9 h-9 bg-[#8B5CF6] rounded-xl flex items-center justify-center shadow-md">
               <Heart className="text-white w-4 h-4" fill="currentColor" />
             </div>
-            <span className="text-base font-black text-brand-text tracking-tight">Gravidez Organizada</span>
+            <span className="text-base font-black text-brand-text tracking-tight uppercase tracking-widest">Gravidez Organizada</span>
           </div>
 
-          {/* Layout hero: mobile empilhado / desktop lado a lado */}
-          <div className="flex flex-col md:flex-row md:items-center md:gap-12">
+          {/* Layout hero */}
+          <div className="flex flex-col md:flex-row md:items-center md:gap-16">
 
-            {/* — Headline + Subheadline (aparecem primeiros no mobile) — */}
-            <div className="flex-1 text-center md:text-left">
-              <h1 className="text-2xl md:text-5xl font-black text-brand-text leading-[1.12] tracking-tight mb-4">
+            {/* — Headline + Subheadline — */}
+            <div className="flex-1 text-center md:text-left z-10">
+              <h1 className="text-2xl md:text-5xl lg:text-6xl font-black text-brand-text leading-[1.1] tracking-tight mb-5">
                 Veja em que fase da gravidez você está, entenda o que merece sua atenção agora e{' '}
                 <span className="text-[#8B5CF6]">pare de depender de informações espalhadas.</span>
               </h1>
 
-              <p className="text-base md:text-lg text-brand-text-muted leading-relaxed mb-6 max-w-lg md:mx-0 mx-auto">
+              <p className="text-base md:text-lg lg:text-xl text-brand-text-muted leading-relaxed mb-8 max-w-xl md:mx-0 mx-auto">
                 Um app simples e prático que funciona como seu GPS da Gestação, reunindo em um só lugar o que ajuda você a acompanhar sua gravidez com mais clareza e menos confusão.
               </p>
 
-              {/* Mockup — visível só no mobile, entre subheadline e bullets */}
-              <div className="md:hidden flex justify-center mb-6">
-                <AppMockup />
+              {/* MOCKUP MOBILE (Ordem 3 no mobile: Headline > Subheadline > Mockup) */}
+              <div className="md:hidden flex justify-center mb-10">
+                <HeroComposition />
               </div>
 
-              {/* Bullets */}
-              <div className="grid grid-cols-2 gap-2.5 mb-7 max-w-sm md:mx-0 mx-auto">
+              {/* Bullets (Ordem 4 no mobile) */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-8 max-w-md md:mx-0 mx-auto">
                 {[
                   'Semana atual da gravidez',
                   'Desenvolvimento do bebê',
                   'O que merece sua atenção agora',
                   'Próximos passos importantes',
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-2 text-sm text-brand-text">
-                    <CheckCircle2 className="w-4 h-4 text-[#8B5CF6] flex-shrink-0" />
+                  <div key={i} className="flex items-center gap-2.5 text-sm md:text-base text-brand-text font-medium">
+                    <div className="w-5 h-5 rounded-full bg-[#8B5CF6]/10 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-3 h-3 text-[#8B5CF6]" />
+                    </div>
                     <span>{item}</span>
                   </div>
                 ))}
               </div>
 
-              {/* CTA */}
-              <CTAButton onClick={() => handleCTAClick('Lead')} className="md:mx-0">
+              {/* CTA (Ordem 5 no mobile) */}
+              <CTAButton onClick={() => handleCTAClick('Lead')} className="md:mx-0 w-full">
                 QUERO MEU GPS DA GESTAÇÃO AGORA
               </CTAButton>
 
-              {/* Microprovas */}
-              <div className="mt-4">
+              {/* Microprovas (Ordem 6 no mobile) */}
+              <div className="mt-5">
                 <Microprovas />
               </div>
             </div>
 
-            {/* — Mockup — visível só no desktop — */}
-            <div className="hidden md:flex flex-shrink-0 justify-center">
-              <AppMockup />
+            {/* — MOCKUP DESKTOP — */}
+            <div className="hidden md:flex flex-1 justify-center relative">
+              <HeroComposition />
             </div>
 
           </div>
