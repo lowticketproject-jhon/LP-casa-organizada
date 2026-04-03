@@ -26,7 +26,8 @@ import './index.css';
 
 const CHECKOUT_URL = 'https://pay.cakto.com.br/koqudon_817260';
 const IMG_MOCKUP = 'https://res.cloudinary.com/dynjqdxw8/image/upload/v1775175702/Screenshot_2026-04-01-12-54-03-294_com.google.android.googlequicksearchbox-edit_fnu9vc.webp';
-const IMG_LIFESTYLE = 'https://res.cloudinary.com/dynjqdxw8/image/upload/v1775175704/1775051796297_cbugpx.webp';
+const IMG_HERO = 'https://res.cloudinary.com/dynjqdxw8/image/upload/v1775182655/1775048869200_pqsv00.webp';
+const IMG_LIFESTYLE = 'https://res.cloudinary.com/dynjqdxw8/image/upload/v1775175704/1775048869200_cbugpx.webp';
 const IMG_SELO = 'https://res.cloudinary.com/dynjqdxw8/image/upload/v1773801684/ChatGPT_Image_17_de_mar._de_2026__22_41_10-removebg-preview_cau976.webp';
 
 const getUrlParams = () => {
@@ -144,17 +145,10 @@ const HeroComposition = () => (
     {/* Celular Principal */}
     <div className="relative z-10 transform scale-110 md:scale-100">
       <div className="relative bg-white rounded-[3rem] shadow-[0_20px_50px_rgba(139,92,246,0.3)] overflow-hidden border-[6px] border-white ring-1 ring-[#8B5CF6]/10">
-        <div className="bg-[#8B5CF6] px-6 py-4 flex items-center justify-between">
-          <div className="flex flex-col">
-            <span className="text-white/70 text-[10px] font-bold uppercase tracking-tighter">Sua fase atual</span>
-            <span className="text-white text-xs font-black">GRAVIDEZ ORGANIZADA</span>
-          </div>
-          <Heart className="w-5 h-5 text-white" fill="currentColor" />
-        </div>
         <img
-          src={IMG_MOCKUP}
+          src={IMG_HERO}
           alt="Painel Principal do App"
-          className="w-full object-cover aspect-[9/19]"
+          className="w-full h-auto object-cover"
           loading="eager"
         />
       </div>
