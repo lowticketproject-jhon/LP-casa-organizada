@@ -240,22 +240,22 @@ export default function App() {
       {/* ========================================== */}
       {/* SEÇÃO 2 — DOR / AGITAÇÃO */}
       {/* ========================================== */}
-      <section className="py-12 md:py-16 px-4 bg-white">
+      <section className="py-12 md:py-16 px-4 bg-[#8B5CF6]">
         <div className="max-w-3xl mx-auto text-center">
-          <SectionTitle>
+          <SectionTitle className="text-white">
             A gravidez já traz mudanças demais. Você não precisa carregar também o peso de 1.000 informações soltas.
           </SectionTitle>
           
-          <p className="text-base md:text-lg text-brand-text-muted mb-6">
+          <p className="text-base md:text-lg text-white/80 mb-6">
             Entre exames, consultas, sintomas, preparativos e tanto conteúdo espalhado, muitas gestantes acaba mentalmente sobrecarregadas, sem saber exatamente o que merece atenção em cada fase.
           </p>
           
-          <p className="text-lg md:text-xl font-semibold text-brand-text mb-8">
+          <p className="text-lg md:text-xl font-semibold text-white mb-8">
             O problema não é falta de informação.<br/>
-            <span className="text-[#8B5CF6]">É excesso.</span>
+            <span className="text-white font-black">É excesso.</span>
           </p>
           
-          <p className="text-base text-brand-text-muted">
+          <p className="text-base text-white/80">
             E quando tudo parece solto, vem aquela sensação de confusão, insegurança e medo de deixar passar algo importante.
           </p>
         </div>
@@ -267,7 +267,7 @@ export default function App() {
             { icon: AlertCircle, title: "Peso mental", desc: "Exames, consultas, sintomas e preparativos acabam ficam todos na sua cabeça." },
             { icon: Eye, title: "Medo de esquecer algo", desc: "Fica difícil saber o que é prioridade agora e o que pode esperar." }
           ].map((item, i) => (
-            <div key={i} className="bg-[#8B5CF6] rounded-2xl p-6 text-center shadow-lg">
+            <div key={i} className="bg-white/15 backdrop-blur-sm rounded-2xl p-6 text-center border border-white/20">
               <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
                 <item.icon className="w-6 h-6 text-white" />
               </div>
