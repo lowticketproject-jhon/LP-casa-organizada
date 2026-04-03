@@ -267,12 +267,12 @@ export default function App() {
             { icon: AlertCircle, title: "Peso mental", desc: "Exames, consultas, sintomas e preparativos acabam ficam todos na sua cabeça." },
             { icon: Eye, title: "Medo de esquecer algo", desc: "Fica difícil saber o que é prioridade agora e o que pode esperar." }
           ].map((item, i) => (
-            <div key={i} className="bg-[#F8F7FF] rounded-2xl p-6 text-center border border-[#8B5CF6]/10">
-              <div className="w-12 h-12 bg-[#8B5CF6]/10 rounded-full flex items-center justify-center mx-auto mb-4">
-                <item.icon className="w-6 h-6 text-[#8B5CF6]" />
+            <div key={i} className="bg-[#8B5CF6] rounded-2xl p-6 text-center shadow-lg">
+              <div className="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                <item.icon className="w-6 h-6 text-white" />
               </div>
-              <h3 className="font-bold text-brand-text mb-2">{item.title}</h3>
-              <p className="text-sm text-brand-text-muted">{item.desc}</p>
+              <h3 className="font-bold text-white mb-2">{item.title}</h3>
+              <p className="text-sm text-white/80">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -380,40 +380,50 @@ export default function App() {
       {/* ========================================== */}
       {/* SEÇÃO 6 — COMPARATIVO */}
       {/* ========================================== */}
-      <section className="py-12 md:py-16 px-4 bg-white">
+      <section className="py-12 md:py-16 px-4 bg-[#F2F2F5]">
         <div className="max-w-4xl mx-auto text-center">
           <SectionTitle>
             Por que não é a mesma coisa que buscar informações soltas na internet?
           </SectionTitle>
           
-          <div className="grid md:grid-cols-2 gap-6 mt-8">
-            <div className="bg-red-50 rounded-2xl p-6 text-left border border-red-100">
-              <h3 className="font-bold text-red-500 mb-4 text-center">Informações soltas</h3>
+          <div className="grid md:grid-cols-2 gap-5 mt-8">
+            <div className="bg-white rounded-2xl p-6 text-left shadow-sm border border-red-100">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-red-100">
+                <span className="w-2 h-2 rounded-full bg-red-400"></span>
+                <h3 className="font-bold text-red-500">Informações soltas</h3>
+              </div>
               <ul className="space-y-3">
                 {["conteúdo espalhado", "dúvidas conflitantes", "difícil saber o que é prioridade", "você precisa filtrar tudo sozinha", "mais peso mental"].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-red-400">
-                    <span className="text-red-400 mt-1 font-bold">✕</span> {item}
+                  <li key={i} className="flex items-start gap-2 text-sm bg-red-50 rounded-lg px-3 py-2 text-red-400">
+                    <span className="text-red-400 mt-0.5 font-bold flex-shrink-0">✕</span> {item}
                   </li>
                 ))}
               </ul>
             </div>
             
-            <div className="bg-[#F8F7FF] rounded-2xl p-6 text-left border-2 border-[#8B5CF6]">
-              <h3 className="font-bold text-[#8B5CF6] mb-4 text-center">Gravidez Organizada</h3>
+            <div className="bg-white rounded-2xl p-6 text-left shadow-sm border-2 border-[#8B5CF6]">
+              <div className="flex items-center gap-2 mb-4 pb-3 border-b border-[#8B5CF6]/20">
+                <span className="w-2 h-2 rounded-full bg-[#8B5CF6]"></span>
+                <h3 className="font-bold text-[#8B5CF6]">Gravidez Organizada</h3>
+              </div>
               <ul className="space-y-3">
                 {["fase atual em um só lugar", "desenvolvimento do bebê com clareza", "atenção ao que importa agora", "próximos passos organizados", "mais leveza mental e praticidade"].map((item, i) => (
-                  <li key={i} className="flex items-start gap-2 text-sm text-brand-text">
-                    <CheckCircle2 className="w-4 h-4 text-[#8B5CF6] mt-1" /> {item}
+                  <li key={i} className="flex items-start gap-2 text-sm bg-[#F8F7FF] rounded-lg px-3 py-2 text-brand-text">
+                    <CheckCircle2 className="w-4 h-4 text-[#8B5CF6] mt-0.5 flex-shrink-0" /> {item}
                   </li>
                 ))}
               </ul>
             </div>
           </div>
           
-          <p className="text-xl font-bold text-brand-text mt-8">
-            Mais clareza, menos confusão.<br/>
-            <span className="text-[#8B5CF6]">Mais organização, menos carga mental.</span>
-          </p>
+          <div className="mt-8 inline-block bg-white rounded-2xl px-8 py-4 shadow-sm border border-[#8B5CF6]/15">
+            <p className="text-xl font-bold text-brand-text">
+              Mais clareza, menos confusão.
+            </p>
+            <p className="text-xl font-bold text-[#8B5CF6]">
+              Mais organização, menos carga mental.
+            </p>
+          </div>
         </div>
       </section>
 
