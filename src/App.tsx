@@ -121,7 +121,7 @@ const FAQItem = ({ question, answer }: { question: string; answer: string }) => 
 const AppMockup = ({ size = 'md' }: { size?: 'sm' | 'md' }) => (
   <div className="relative">
     <div className={`absolute inset-0 bg-[#8B5CF6]/20 rounded-3xl blur-3xl scale-110 -z-10`} />
-    <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-[#8B5CF6]/10 ${size === 'sm' ? 'max-w-[200px]' : 'max-w-[280px] md:max-w-[300px]'}`}>
+    <div className={`relative bg-white rounded-3xl shadow-2xl overflow-hidden border border-[#8B5CF6]/10 ${size === 'sm' ? 'max-w-[400px]' : 'max-w-[560px] md:max-w-[600px]'}`}>
       <div className="bg-[#8B5CF6] px-4 py-2.5 flex items-center justify-between">
         <span className="text-white text-xs font-bold">Gravidez Organizada</span>
         <Heart className="w-3.5 h-3.5 text-white/80" fill="currentColor" />
@@ -289,7 +289,7 @@ export default function App() {
 
             {/* Imagem lifestyle como apoio visual */}
             <div className="flex-shrink-0 flex justify-center order-2 md:order-1">
-              <div className="relative max-w-[280px] w-full">
+              <div className="relative max-w-[560px] w-full">
                 <div className="absolute inset-0 bg-[#8B5CF6]/10 rounded-3xl blur-2xl scale-110 -z-10" />
                 <img
                   src={IMG_LIFESTYLE}
@@ -413,7 +413,7 @@ export default function App() {
 
             {/* Mockup como apoio visual — não é dobra separada */}
             <div className="flex-shrink-0 flex justify-center">
-              <div className="relative max-w-[220px] w-full">
+              <div className="relative max-w-[440px] w-full">
                 <div className="absolute inset-0 bg-[#8B5CF6]/15 rounded-3xl blur-2xl scale-110 -z-10" />
                 <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-[#8B5CF6]/10">
                   <div className="bg-[#8B5CF6] px-4 py-2.5 flex items-center justify-between">
@@ -542,7 +542,7 @@ export default function App() {
 
             {/* Imagem lifestyle como apoio discreto da seção */}
             <div className="flex-shrink-0 flex justify-center">
-              <div className="relative max-w-[240px] w-full">
+              <div className="relative max-w-[480px] w-full">
                 <div className="absolute inset-0 bg-[#8B5CF6]/10 rounded-3xl blur-2xl scale-110 -z-10" />
                 <img
                   src={IMG_LIFESTYLE}
@@ -691,7 +691,7 @@ export default function App() {
               <img
                 src={IMG_SELO}
                 alt="Selo de Garantia 7 dias"
-                className="w-[264px] h-[264px] object-contain"
+                className="w-[528px] h-[528px] object-contain"
                 loading="lazy"
               />
             </div>
