@@ -569,7 +569,7 @@ export default function App() {
               <img 
                 src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1773801684/ChatGPT_Image_17_de_mar._de_2026__22_41_10-removebg-preview_cau976.webp" 
                 alt="Selo de Garantia 7 dias" 
-                className="w-44 h-44 object-contain"
+                className="w-[264px] h-[264px] object-contain"
               />
             </div>
             
