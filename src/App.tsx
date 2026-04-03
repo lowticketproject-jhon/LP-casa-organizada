@@ -80,7 +80,7 @@ const Button = ({ children, className = "", onClick, variant = 'primary' }: Butt
     onClick={onClick}
     className={`
       px-8 py-4 rounded-full font-bold transition-all duration-300 transform 
-      active:scale-95 text-base md:text-lg
+      active:scale-95 text-base md:text-lg btn-pulse
       ${variant === 'primary' 
         ? "bg-[#00A63E] text-white hover:bg-[#009632] shadow-lg hover:shadow-xl" 
         : "bg-[#8B5CF6] text-white hover:bg-[#7C3AED] shadow-lg hover:shadow-xl"}
@@ -559,7 +559,7 @@ export default function App() {
               <img 
                 src="https://res.cloudinary.com/dynjqdxw8/image/upload/v1773801684/ChatGPT_Image_17_de_mar._de_2026__22_41_10-removebg-preview_cau976.webp" 
                 alt="Selo de Garantia 7 dias" 
-                className="w-32 h-32 object-contain"
+                className="w-44 h-44 object-contain"
               />
             </div>
             
